@@ -13,7 +13,7 @@ var connect = require('connect');
 var serveStatic = require('serve-static');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/AnalystData');
+mongoose.connect('mongodb://ip-172-31-40-77/AnalystData');
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
