@@ -30,7 +30,11 @@ exports.avg = function(Analyst, firmSchema){
         //o.out = { replace: 'map_reduce_TestData'};
 	o.out = 'map_reduce_TestData';
         Analyst.mapReduce(o, function (err, results) {
-
+	    if(err){ 
+		console.log("Error:", err);
+	    }else{
+		console.log("success");
+	    }
         });
 
         var analystResults = mongoose.model('analystResults', firmSchema, 'map_reduce_TestData');
