@@ -70,10 +70,10 @@ app.use(require('method-override')());
 //app.use(router(app));
 app.use(serveStatic(path.join(__dirname, 'public')));
 
-//var port = process.env.PORT || 8080;
-//app.listen(port, function() {
-//  console.log("Listening on " + port);
-//});
+var port = process.env.PORT || 8080;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
 
 
 app.get('/', routes.index);
@@ -81,4 +81,4 @@ app.get('/firms', firm.avg(Firm, firmSchema));
 app.get('/firms/:firmName', firm.specific(Firm, firmSchema));
 app.get('/analysts', analyst.avg(Analyst, firmSchema));
 
-http.createServer(app).listen(8080);
+http.createServer(app)
