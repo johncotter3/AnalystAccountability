@@ -32,7 +32,7 @@ var Firm = mongoose.model('Firm', firmSchema, 'TestData');
 var Analyst = mongoose.model('Analyst', firmSchema, 'TestData');
 
 
-var app = express();
+var app = express.createServer(express.logger());
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
