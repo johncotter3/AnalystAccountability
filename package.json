@@ -11,7 +11,12 @@
     "jade": "*",     
     "mongodb" : "*",
     "monk" : "*",
-    "mongoose" : "*"      
+    "mongoose" : "*",
+    "static-favicon" : "*",
+    "body-parser" : "*",
+    "app-router" : "*",
+    "connect" : "*",
+    "serve-static" : "*"  
   },
   "engines": {
     "node": "0.8.x",
