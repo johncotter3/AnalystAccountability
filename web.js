@@ -13,7 +13,22 @@ var connect = require('connect');
 var serveStatic = require('serve-static');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://ip-172-31-40-77/AnalystData');
+//mongoose.connect('mongodb://ip-172-31-40-77/AnalystData');
+var config = {       
+    "USER"    : "",                  
+    "PASS"    : "",       
+    "HOST"    : "ec2-54-213-144-38.us-west-2.compute.amazonaws.com",         
+    "PORT"    : "27017",        
+    "DATABASE" : "AnalystData"     
+};
+var dbPath  = "mongodb://"+
+    config.USER + ":"+     
+    config.PASS + "@"+     
+    config.HOST + ":"+    
+    config.PORT + "/"+     
+    config.DATABASE;
+mongoose.connect(dbPath);
+//mongoose.connect('mongodb://172.31.40.77/AnalystData');
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
