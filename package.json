@@ -15,6 +15,7 @@
     "static-favicon" : "*",
     "body-parser" : "*",
     "app-router" : "*",
+    "method-override" : "*",
     "connect" : "*",
     "serve-static" : "*"  
   },
