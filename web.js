@@ -27,7 +27,8 @@ var dbPath  = "mongodb://"+
     config.HOST + ":"+    
     config.PORT + "/"+     
     config.DATABASE;
-mongoose.connect(dbPath);
+//mongoose.connect(dbPath);
+mongoose.connect('mongodb://johncotter:johncotter@ds049337.mongolab.com:49337/analystaccountability')
 //mongoose.connect('mongodb://172.31.40.77/AnalystData');
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'connection error:'));
