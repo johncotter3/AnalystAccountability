@@ -1,8 +1,8 @@
 var express = require('express');
 var fs = require('fs');
 var routes = require('./routes');
-var analyst = require('./routes/analyst')
-  , firm = require('./routes/firm');
+var analyst = require('./routes/analyst');
+var firm = require('./routes/firm');
 var http = require('http');
 var path = require('path');
 var favicons = require('static-favicon');

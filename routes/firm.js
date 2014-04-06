@@ -28,12 +28,18 @@ exports.avg = function(Firm, firmSchema) {
             return reducedVal;
         };
         //o.out = {replace: 'map_reduce_TestData'};
-        o.out = 'map_reduce_TestData';
+        o.out = 'map_reduce_firmsAvg';
+	o.verbose = true;
 	Firm.mapReduce(o, function (err, results) {
+	    if(err){
+                console.log("Error:", err);
+            }else{
+                console.log("success");
+            }
 
         });
 
-        var firmResults = mongoose.model('firmResults', firmSchema, 'map_reduce_TestData');
+        var firmResults = mongoose.model('firmResults', firmSchema, 'map_reduce_firmsAvg');
         firmResults.find(function(err, docs) {
             if (err) return console.error(err);
             console.log(docs);
@@ -68,16 +74,21 @@ exports.specific = function(Firm, firmSchema) {
             reducedVal.avg = reducedVal.qty/reducedVal.count;
             return reducedVal;
         };
-        o.out = 'map_reduce_TestData';
+        o.out = 'map_reduce_firmsSpecific';
+	o.verbose = true;
 	o.query = {'Firm': firmName}
         Firm.mapReduce(o, function (err, results) {
+	    if(err){
+                console.log("Error:", err);
+            }else{
+                console.log("success");
+            }
 
         });
 
 	console.log("Specific Firm Page for " + firmName);
 
-
-        var firmResults = mongoose.model('firmResults', firmSchema, 'map_reduce_TestData');
+        var firmResults = mongoose.model('firmResults', firmSchema, 'map_reduce_firmsSpecific');
         firmResults.find(function(err, docs) {
             if (err) return console.error(err);
             console.log(docs);

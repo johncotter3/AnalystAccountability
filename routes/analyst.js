@@ -28,7 +28,8 @@ exports.avg = function(Analyst, firmSchema){
             return reducedVal;
         };
         //o.out = { replace: 'map_reduce_TestData'};
-	o.out = 'map_reduce_TestData';
+	o.out = 'map_reduce_analystAvg';
+	o.verbose = true;
         Analyst.mapReduce(o, function (err, results) {
 	    if(err){ 
 		console.log("Error:", err);
@@ -37,7 +38,7 @@ exports.avg = function(Analyst, firmSchema){
 	    }
         });
 
-        var analystResults = mongoose.model('analystResults', firmSchema, 'map_reduce_TestData');
+        var analystResults = mongoose.model('analystResults', firmSchema, 'map_reduce_analystAvg');
         analystResults.find(function(err, docs) {
             if (err) return console.error(err);
             console.log(docs);
