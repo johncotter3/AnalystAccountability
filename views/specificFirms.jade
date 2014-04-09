@@ -60,8 +60,8 @@ head
                     each poop, i in forecast
                       tr
                         td
-                          p
-                            a(href='firms/'+poop._id) #{poop._id}
+                          p #{poop.id}
+                            //a(href='firms/'+poop._id) #{poop._id}
                         td
                           p #{poop.value.avg}
                             

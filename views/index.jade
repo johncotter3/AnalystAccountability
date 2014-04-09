@@ -53,6 +53,7 @@ head
       //
          www.google.com/fonts/specimen/Ubuntu#pairings 
       .row-fluid.heading
+
         .span12
           h1 Analyst Accountability
 
@@ -62,100 +63,17 @@ head
              Special typography from Bootstrap for lead paragraph. 
           //
              http://twitter.github.io/bootstrap/base-css.html#typography 
-          p.lead Tax that ass.
-      .row-fluid.pitch
-        .span5.offset1.video
-          img.img-polaroid(alt='Placeholder', src='http://placehold.it/480x300')
-        //
-           We define a new 'actions' div to contain statistics, order, and share buttons.
-        .span5.actions
-          .row-fluid
-            .span8.offset2
-              .row-fluid.statistics
-                .span4
-                  //
-                     linediv-l and linediv-r give dividing lines that look
-                                    different in horizontal and vertical layouts, illustrating
-                                    media queries. 
-                  .linediv-l
-                    h3 1000
-                    p backers
-                .span4
-                  .linediv-c
-                    h3 $6000
-                    p of $10,000
-                .span4
-                  .linediv-r
-                    h3 10
-                    p days left
-            .row-fluid
-              .span10.offset1
-                //
-                   Bootstrap progress bar 
-                //
-                   http://twitter.github.io/bootstrap/components.html#progress 
-                .thermometer.progress.active
-                  .bar.bar-success(style='width: 60%;')
-                  .bar.bar-warning(style='width: 40%;')
-            .row-fluid
-              .span6.offset3.order
-                a.coinbase-button(data-code='fde73461e39f9cf2fd114bcd1cda142a', data-button-style='custom_large', href='https://coinbase.com/checkouts/fde73461e39f9cf2fd114bcd1cda142a')
-                  | Pay With Bitcoin
-                script(src='https://coinbase.com/assets/button.js', type='text/javascript')
-            .row-fluid
-              .span8.offset2.social
-                //
-                   AddThis Button BEGIN 
-                .addthis_toolbox.addthis_default_style.addthis_32x32_style
-                  a.addthis_button_preferred_1
-                  a.addthis_button_preferred_2
-                  a.addthis_button_compact
-                  a.addthis_counter.addthis_bubble_style
-                script(type='text/javascript')
-                  var addthis_config = {"data_track_addressbar":true};
-                script(type='text/javascript', src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4d7e6800359af590')
-                //
-                   AddThis Button END 
-      //
-         Beyond this part the marketing copy begins. 
-      //
-         https://developer.mozilla.org/en-US/docs/Web/CSS/text-align 
-      //
-         http://twitter.github.io/bootstrap/base-css.html#images 
-      //
-         http://placehold.it 
-      .row-fluid.section1
-        .span5.offset1.asset
-          img.img-polaroid(alt='Placeholder', src='http://placehold.it/480x300')
-        .span5.copy
-          p
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            | porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
-            | mollis justo velit at nunc. Fusce nec egestas sem. Donec
-            | fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
-            | volutpat lorem ut congue malesuada. In facilisis scelerisque
-            | turpis sed lacinia. Donec in orci lectus. Donec auctor semper
-            | quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
-            | risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
-            | consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
-            | rutrum, nunc leo tempus nisl, eu mollis justo velit at
-            | nunc. Fusce nec egestas sem. Donec fringilla.
-      .row-fluid.section2
-        .span5.offset1.copy.copy-right
-          p
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            | porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
-            | mollis justo velit at nunc. Fusce nec egestas sem. Donec
-            | fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
-            | volutpat lorem ut congue malesuada. In facilisis scelerisque
-            | turpis sed lacinia. Donec in orci lectus. Donec auctor semper
-            | quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
-            | risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
-            | consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
-            | rutrum, nunc leo tempus nisl, eu mollis justo velit at
-            | nunc. Fusce nec egestas sem. Donec fringilla.
-        .span5.asset
-          img.img-polaroid(alt='Placeholder', src='http://placehold.it/480x300')
+          p.lead Keeping Analysts in Check.
+          
+          each poop, i in docs
+            .row-fluid.section1
+              .span5.offset1.asset
+                img.img-polaroid(alt=poop.PostTitle, src=poop.PostImage width='480' height='300')
+              .span5.copy
+                h3 #{poop.PostTitle}
+                p #{poop.Post}  
+
+  
       //
          For the FAQ, we introduce a little bit of JS, using the accordion. 
       //
@@ -182,9 +100,9 @@ head
                   | Something about not being able to be accurate if the market is random.
             .accordion-group
               .accordion-heading
-                a.accordion-toggle(data-toggle='collapse', data-parent='#accordion2', href='#collapseTwo')
+                a.accordion-toggle(data-toggle='collapse', data-parent='#accordion2', href='#collapseThree')
                   | Dependence on analyst expertise
-              #collapseTwo.accordion-body.collapse
+              #collapseThree.accordion-body.collapse
                 .accordion-inner
                   | Something about large financial institutions taking advantage.
 

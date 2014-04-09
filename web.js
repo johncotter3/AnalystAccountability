@@ -3,6 +3,7 @@ var fs = require('fs');
 var routes = require('./routes');
 var analyst = require('./routes/analyst');
 var firm = require('./routes/firm');
+var post = require('./routes/post');
 var http = require('http');
 var path = require('path');
 var favicons = require('static-favicon');
@@ -29,7 +30,7 @@ var dbPath  = "mongodb://"+
     config.DATABASE;
 //mongoose.connect(dbPath);
 mongoose.connect('mongodb://johncotter:johncotter@ds049337.mongolab.com:49337/analystaccountability')
-//mongoose.connect('mongodb://172.31.40.77/AnalystData');
+
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -38,21 +39,28 @@ db.once('open', function callback () {
 });
 
 var firmSchema = new mongoose.Schema({
-            Firm: String
-            , _id: String
-            , Analyst: String
-            , Date: Date
-            , Symbol: String
-            , Percent_Diff: Number
-            , value: {
-                count: Number,
-                qty: Number,
-                avg: Number
-            }
-        });
+    Firm: String
+    , _id: String
+    , Analyst: String
+    , Date: Date
+    , Symbol: String
+    , Percent_Diff: Number
+    , value: {
+	count: Number,
+        qty: Number,
+        avg: Number
+    }
+});
 var Firm = mongoose.model('Firm', firmSchema, 'TestData');
 var Analyst = mongoose.model('Analyst', firmSchema, 'TestData');
-
+var postSchema = new mongoose.Schema({
+    _id : String
+    , Date : Date
+    , Post : String
+    , PostTitle : String
+    , PostImage : String
+});
+var Post = mongoose.model('Post', postSchema, 'PostData');
 
 var app = express();
 // Logging middleware
@@ -77,9 +85,10 @@ app.listen(port, function() {
 });
 
 
-app.get('/', routes.index);
+app.get('/', routes.index(postSchema));
 app.get('/firms', firm.avg(Firm, firmSchema));
 app.get('/firms/:firmName', firm.specific(Firm, firmSchema));
 app.get('/analysts', analyst.avg(Analyst, firmSchema));
+app.get('/posts/:postID', post.view(Post, postSchema));
 
 http.createServer(app)

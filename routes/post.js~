@@ -1,0 +1,25 @@
+
+/*
+ * GET Firms Pages.
+ */
+var mongoose = require('mongoose');
+var ObjectID = mongoose.Types.ObjectId;
+
+exports.view = function(Post, postSchema) {
+    return function(req, res) {
+	var postID = req.params.postID;
+        
+	console.log("Loading Post ID = " + postID);
+
+        var postResults = mongoose.model('postResults', postSchema, 'postData');
+        postResults.findOne({_id : ObjectID(postID)}, function(err, docs) {
+            if (err) return console.error(err);
+	    // TODO: Handle error when no results are returned
+            console.log(docs);
+            res.render('posts', {
+                "docs" : docs 
+            });
+        });
+    };
+};
+
