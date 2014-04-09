@@ -38,7 +38,7 @@ exports.avg = function(Analyst, firmSchema){
 	    }
         });
 
-        var analystResults = mongoose.model('analystResults', firmSchema, 'map_reduce_analystAvg');
+        var analystResults = mongoose.model('analystResults', firmSchema, 'map_reduce_results');
         analystResults.find(function(err, docs) {
             if (err) return console.error(err);
             console.log(docs);

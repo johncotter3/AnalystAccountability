@@ -31,7 +31,7 @@ head
                 a(href='/') Home
               li
                 a(href='/analysts') Analysts
-              li.active
+              li
                 a(href='/firms') Firms
               li
                 a(href='/stocks') Stocks
@@ -45,30 +45,10 @@ head
       // www.google.com/fonts/specimen/Ubuntu#pairings 
       .row-fluid.heading
         .span12
-          h1(style='padding-bottom: 10px;') Firm Accuracy
-
-            block content
-                p &nbsp;
-                table(align="center")
-                  thead                  
-                  tbody
-                    tr
-                      td
-                        h3 Firm
-                      td
-                        h3 Average Percent Error
-                      td
-                        h3 # of Ratings
-                    each poop, i in forecast
-                      tr
-                        td
-                          p
-                            a(href='firms/'+poop._id) #{poop._id}
-                        td
-                          p #{poop.value.avg}
-                        td
-                          p #{poop.value.count}
-                            
+          p &nbsp
+          h1(style='padding-bottom: 10px;') Page does not currently exist. 
+          h1 Coming Soon!
+                           
       .row-fluid.subheading
         .span12
           

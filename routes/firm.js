@@ -28,25 +28,23 @@ exports.avg = function(Firm, firmSchema) {
             return reducedVal;
         };
         //o.out = {replace: 'map_reduce_TestData'};
-        o.out = 'map_reduce_firmsAvg';
+        o.out = 'map_reduce_results';
 	o.verbose = true;
-	Firm.mapReduce(o, function (err, results) {
+	Firm.mapReduce(o, function (err, model, stats) {
 	    if(err){
-                console.log("Error:", err);
+                console.log("Error: ", err);
             }else{
-                console.log("success");
+                console.log("Success, Took %d ms", stats.processtime);
             }
-
+	    model.find().sort('-value.avg').limit(15).exec(function(err, docs) {
+		if (err) return console.error(err);
+		console.log(docs);
+		res.render('firms', {
+                    "forecast" : docs
+		});
+	    });
         });
-
-        var firmResults = mongoose.model('firmResults', firmSchema, 'map_reduce_firmsAvg');
-        firmResults.find(function(err, docs) {
-            if (err) return console.error(err);
-            console.log(docs);
-            res.render('firms', {
-                "forecast" : docs
-            });
-        });
+	
     };
 };
 
@@ -74,27 +72,24 @@ exports.specific = function(Firm, firmSchema) {
             reducedVal.avg = reducedVal.qty/reducedVal.count;
             return reducedVal;
         };
-        o.out = 'map_reduce_firmsSpecific';
+        o.out = 'map_reduce_results';
 	o.verbose = true;
 	o.query = {'Firm': firmName}
-        Firm.mapReduce(o, function (err, results) {
+        Firm.mapReduce(o, function (err, model, stats) {
 	    if(err){
-                console.log("Error:", err);
+                console.log("Error: ", err);
             }else{
-                console.log("success");
+		console.log("Load specific firm page for " + firmName);
+                console.log("Success, Took %d ms", stats.processtime);
             }
 
-        });
-
-	console.log("Specific Firm Page for " + firmName);
-
-        var firmResults = mongoose.model('firmResults', firmSchema, 'map_reduce_firmsSpecific');
-        firmResults.find(function(err, docs) {
-            if (err) return console.error(err);
-            console.log(docs);
-            res.render('specificFirms', {
-                "forecast" : docs,
-		title: firmName
+            model.find().exec(function(err, docs) {
+		if (err) return console.error(err);
+		console.log(docs);
+		res.render('specificFirms', {
+                    "forecast" : docs,
+		    title: firmName
+		});    
             });
         });
     };

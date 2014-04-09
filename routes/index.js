@@ -21,3 +21,8 @@ exports.index = function(postSchema) {
     };
 };
 
+exports.dne = function(){
+    return function(req, res){
+	res.render('dne');
+    };
+};
