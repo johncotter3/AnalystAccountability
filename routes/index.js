@@ -10,7 +10,7 @@ exports.index = function(postSchema) {
 
 	var postResults = mongoose.model('postResults', postSchema, 'postData');
 	var q = postResults.find().sort('Date').limit(3);
-	q.exec(function(err, docs) {
+	q.sort('-Date').exec(function(err, docs) {
 	    if (err) return console.error(err);
 	    // TODO: Handle error when no results are returned
 	    console.log(docs);

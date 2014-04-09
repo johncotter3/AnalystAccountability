@@ -68,9 +68,11 @@ head
           each poop, i in docs
             .row-fluid.section1
               .span5.offset1.asset
-                img.img-polaroid(alt=poop.PostTitle, src=poop.PostImage width='480' height='300')
+                a.link(href='posts/'+poop._id)
+                  img.img-polaroid(alt=poop.PostTitle, src=poop.PostImage width='480' height='300')
               .span5.copy
-                h3 #{poop.PostTitle}
+                h3 
+                  a.link(href='posts/'+poop._id) #{poop.PostTitle}
                 p #{poop.Post}  
 
   

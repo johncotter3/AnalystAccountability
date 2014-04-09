@@ -45,10 +45,12 @@ head
       // www.google.com/fonts/specimen/Ubuntu#pairings 
       .row-fluid.heading
         .span12
-          h1(style='padding-bottom: 10px;') #{docs.PostTitle}
-
           block content
             p &nbsp;
+            p
+              img.img-polaroid(alt=docs.PostTitle, src=docs.PostImage width='720' height='450')
+            p &nbsp;
+            h1(style='padding-bottom: 10px;') #{docs.PostTitle}
             p #{docs.Post}
             p #{docs.Date}  
                             
