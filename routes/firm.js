@@ -36,15 +36,15 @@ exports.avg = function(Firm, firmSchema) {
             }else{
                 console.log("Success, Took %d ms", stats.processtime);
             }
-	    model.find().sort('-value.avg').limit(15).exec(function(err, docs) {
+	    model.find().exec(function(err, docs) {
 		if (err) return console.error(err);
 		console.log(docs);
+		console.log("WHOAAAAAAAAA");
 		res.render('firms', {
                     "forecast" : docs
 		});
 	    });
         });
-	
     };
 };
 

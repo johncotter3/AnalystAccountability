@@ -50,20 +50,24 @@ head
             block content
                 p &nbsp;
                 table(align="center")
-                  thead                  
-                  tbody
+                  thead
                     tr
-                      td
+                      th
                         h3 Analyst for #{title}
-                      td
+                      th
                         h3 Percent Error
+                      th
+                        h3 Number of Ratings
+                  tbody      
                     each poop, i in forecast
                       tr
                         td
-                          p #{poop.id}
-                            //a(href='firms/'+poop._id) #{poop._id}
+                          p #{poop._id}
+                           //a(href='firms/'+poop._id) #{poop._id}
                         td
-                          p #{poop.value.avg}
+                          p #{Math.round(poop.value.avg *10) / 10}%
+                        td
+                          p #{poop.value.count}
                             
       .row-fluid.subheading
         .span12
