@@ -43,6 +43,8 @@ var firmSchema = new mongoose.Schema({
     , Analyst: String
     , Date: Date
     , Symbol: String
+    , Price_int: Number
+    , Actual: Number
     , Percent_Diff: Number
     , value: {
 	count: Number,
@@ -84,8 +86,9 @@ app.listen(port, function() {
 app.get('/', routes.index(postSchema));
 app.get('/firms', firm.avg(Firm, firmSchema));
 app.get('/firms/:firmName', firm.specific(Firm, firmSchema));
-//app.get('/analysts', analyst.avg(Analyst, firmSchema));
-app.get('/analysts', routes.dne());
+app.get('/analysts', analyst.avg(Analyst, firmSchema));
+app.get('/analysts/:analystName', analyst.specific(Firm, firmSchema));
+//app.get('/analysts', routes.dne());
 app.get('/stocks', routes.dne());
 app.get('/posts/:postID', post.view(Post, postSchema));
 

@@ -62,8 +62,8 @@ head
                     each poop, i in forecast
                       tr
                         td
-                          p #{poop._id}
-                           //a(href='firms/'+poop._id) #{poop._id}
+                          p 
+                           a(href='/analysts/'+poop._id) #{poop._id}
                         td
                           p #{Math.round(poop.value.avg *10) / 10}%
                         td

@@ -45,29 +45,43 @@ head
       // www.google.com/fonts/specimen/Ubuntu#pairings 
       .row-fluid.heading
         .span12
-          h1 Analyst Accuracy
+          h1(style='padding-bottom: 10px;') #{title} Accuracy
 
             block content
-              p &nbsp;
-              table(align="center")
-                thead                  
-                tbody
-                  tr
-                    td
-                      h3 Analyst
-                    td
-                      h3 Percent Error
-                    td
-                      h3 Number Ratings
-                  each doc, i in forecast
+                p &nbsp;
+                table(align="center")
+                  thead
                     tr
-                      td
-                        p
-                          a(href='/analysts/'+doc._id) #{doc._id}
-                      td
-                        p #{doc.value.avg}
-                      td
-                        p #{doc.value.count}
+                      th
+                        h3 Date
+                      th
+                        h3 Symbol
+                      th
+                        h3 Projected Price
+                      th
+                        h3 Date Price
+                      th
+                        h3 1yr Later Price
+                      th
+                        h3 Percent Error
+                  tbody      
+                    each poop, i in forecast
+                      tr
+                        td
+                          p #{poop._id}
+                           //a(href='firms/'+poop._id) #{poop._id}
+                        td
+                          p #{Math.round(poop.value.avg *10) / 10}%
+                        td
+                          p #{poop.value.count}
+                        td
+                          p #{poop._id}
+                           //a(href='firms/'+poop._id) #{poop._id}
+                        td
+                          p #{Math.round(poop.value.avg *10) / 10}%
+                        td
+                          p #{poop.value.count}
+    
                             
       .row-fluid.subheading
         .span12
