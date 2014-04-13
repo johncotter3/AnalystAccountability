@@ -43,6 +43,8 @@ var firmSchema = new mongoose.Schema({
     , Analyst: String
     , Date: Date
     , Symbol: String
+    , Company: String
+    , Rating: String
     , Price_int: Number
     , Actual: Number
     , Percent_Diff: Number

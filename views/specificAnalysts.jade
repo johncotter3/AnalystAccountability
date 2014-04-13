@@ -14,6 +14,20 @@ head
     link(rel='stylesheet', href='/stylesheets/style.css')    
     script (type='text/javascript').
       var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-43111947-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+    //script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.js")
+    //script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.dataTables.js")
+    //script(type="text/javascript" charset="utf-8" language="javascript" src="/javascripts/DT_bootstrap.js")
+    link(rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/stylesheets/dataTables.bootstrap.css")
+    script(type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.10.2.min.js")
+    script(type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10-dev/js/jquery.dataTables.min.js")
+    script(type="text/javascript" language="javascript" src="/javascripts/dataTables.bootstrap.js")
+    script(type="text/javascript" charset="utf-8").
+      $(document).ready(function() {
+        $('#firmTable').dataTable();
+      } );
+
+
   body
     // Mobile-friendly navbar adapted from example. 
     // http://twitter.github.io/bootstrap/examples/starter-template.html 
@@ -46,43 +60,42 @@ head
       .row-fluid.heading
         .span12
           h1(style='padding-bottom: 10px;') #{title} Accuracy
-
-            block content
-                p &nbsp;
-                table(align="center")
-                  thead
-                    tr
-                      th
-                        h3 Date
-                      th
-                        h3 Symbol
-                      th
-                        h3 Company
-                      th
-                        h3 Rating
-                      th
-                        h3 Projected Price
-                      th
-                        h3 Actual Price
-                      th
-                        h3 Percent Error
-                  tbody      
-                    each poop, i in forecast
-                      tr
-                        td
-                          p #{poop.Date}
-                        td
-                          p #{poop.Symbol}
-                        td
-                          p #{poop.Company}
-                        td
-                          p #{poop.Rating}
-                        td
-                          p #{poop.Price_int}
-                        td
-                          p #{poop.Actual}
-                        td
-                          p #{poop.Percent_Diff}
+          p &nbsp;  
+          block content
+            table(id="firmTable" align="center" width="85%" cellpadding="0" cellspacing="0" border="0" class="table-striped")
+              thead
+                tr
+                  th
+                    h3 Date
+                  th
+                    h3 Symbol
+                  th
+                    h3 Company
+                  th
+                    h3 Rating
+                  th
+                    h3 Projected Price
+                  th
+                    h3 Actual Price
+                  th
+                    h3 Percent Error
+              tbody      
+                each poop, i in forecast
+                  tr
+                    td
+                      p #{poop.Date}
+                    td
+                      p #{poop.Symbol}
+                    td
+                      p #{poop.Company}
+                    td
+                      p #{poop.Rating}
+                    td
+                      p #{poop.Price_int}
+                    td
+                      p #{poop.Actual}
+                    td
+                      p #{poop.Percent_Diff}
     
                             
       .row-fluid.subheading
