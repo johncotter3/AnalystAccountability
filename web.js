@@ -4,6 +4,7 @@ var routes = require('./routes');
 var analyst = require('./routes/analyst');
 var firm = require('./routes/firm');
 var post = require('./routes/post');
+var stock = require('./routes/stock');
 var http = require('http');
 var path = require('path');
 var favicons = require('static-favicon');
@@ -56,6 +57,7 @@ var firmSchema = new mongoose.Schema({
 });
 var Firm = mongoose.model('Firm', firmSchema, 'AnalystData');
 var Analyst = mongoose.model('Analyst', firmSchema, 'AnalystData');
+var Stock = mongoose.model('Stock', firmSchema, 'AnalystData');
 var postSchema = new mongoose.Schema({
     _id : String
     , Date : Date
@@ -74,6 +76,7 @@ app.use(function(request, response, next) {
 
 app.set("views", __dirname + "/views");
 app.set('view engine', 'jade');
+app.set('view options', {layout: false});
 app.use(favicons());
 app.use(bodyParser());
 app.use(require('method-override')());
@@ -91,7 +94,8 @@ app.get('/firms/:firmName', firm.specific(Firm, firmSchema));
 app.get('/analysts', analyst.avg(Analyst, firmSchema));
 app.get('/analysts/:analystName', analyst.specific(Firm, firmSchema));
 //app.get('/analysts', routes.dne());
-app.get('/stocks', routes.dne());
+app.get('/stocks', stock.avg(Stock, firmSchema));
+app.get('/stocks/:stockName', stock.specific(Stock, firmSchema));
 app.get('/posts/:postID', post.view(Post, postSchema));
 
 http.createServer(app)

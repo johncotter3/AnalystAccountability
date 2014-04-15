@@ -1,36 +1,32 @@
 doctype html
 html(lang='en')
-head
+  head
     meta(charset='utf-8')
     title Analyst Accountability
+
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css')
+    link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.n\
+o-icons.min.css')
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css')
     link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css')
     script(src='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js')
     script(src='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js')
-    link(href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic', rel='stylesheet', type='text/css')
-    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800', rel='stylesheet', type='text/css')
-    link(rel='stylesheet', href='/stylesheets/style.css')    
+    link(href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,7\
+00italic', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,\
+400,600,700,800', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    //Google Analytics Stuff
     script (type='text/javascript').
       var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-43111947-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
-    //script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.js")
-    //script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.dataTables.js")
-    //script(type="text/javascript" charset="utf-8" language="javascript" src="/javascripts/DT_bootstrap.js")
-    link(rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css")
-    link(rel="stylesheet" type="text/css" href="/stylesheets/dataTables.bootstrap.css")
-    script(type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.10.2.min.js")
-    script(type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10-dev/js/jquery.dataTables.min.js")
-    script(type="text/javascript" language="javascript" src="/javascripts/dataTables.bootstrap.js")
-    script(type="text/javascript" charset="utf-8").
-      $(document).ready(function() {
-        $('#firmTable').dataTable();
-      } );
 
+
+    script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.js")
+    script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.dataTables.js")
+    script(type="text/javascript" charset="utf-8" language="javascript" src="/javascripts/DT_bootstrap.js")
 
   body
-    // Mobile-friendly navbar adapted from example. 
-    // http://twitter.github.io/bootstrap/examples/starter-template.html 
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
@@ -41,15 +37,23 @@ head
           a.brand(href='/') Analyst Accountability
           .nav-collapse.collapse
             ul.nav
-              li
+              li(id='home_li')
                 a(href='/') Home
-              li.active
+              li(id='analysts_li')
                 a(href='/analysts') Analysts
-              li
+              li(id='firms_li')
                 a(href='/firms') Firms
-              li
+              li(id='stocks_li')
                 a(href='/stocks') Stocks
-          // /.nav-collapse 
+            form.navbar-search.pull-right.form-search(action='')
+              .input-append
+                input.span2.search-query(type='text')
+                button.btn(type='submit')
+                  i.icon-search
+
+    script.
+      $('#analysts_li'.addClass('active');
+ 
     // We use row-fluid inside containers to achieve a resizable layout. 
     // blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ 
     // http://stackoverflow.com/a/12270322 
@@ -60,7 +64,7 @@ head
       .row-fluid.heading
         .span12
           h1(style='padding-bottom: 10px;') #{title} Accuracy
-          p &nbsp;  
+          //p &nbsp;  
           block content
             table(id="firmTable" align="center" width="85%" cellpadding="0" cellspacing="0" border="0" class="table-striped")
               thead
