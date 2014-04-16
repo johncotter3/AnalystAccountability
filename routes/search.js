@@ -1,10 +1,10 @@
 
 /*
- * GET Firms Pages.
+ * GET Search Pages.
  */
 var mongoose = require('mongoose');
 
-exports.avg = function(Stock, firmSchema) {
+exports.query = function(Stock, firmSchema) {
     return function(req, res) {
         var o = {};
         o.map = function() {
@@ -43,26 +43,6 @@ exports.avg = function(Stock, firmSchema) {
 		res.render('stocks', {
                     "forecast" : docs
 		});
-	    });
-        });
-    };
-};
-
-exports.specific = function(Stock, firmSchema) {
-    return function(req, res) {
-	var symbolName = req.params.symbolName;
-
-        Stock.find({"Symbol": symbolName}, function (err, docs) {
-	    if(err){
-                console.log("Error: ", err);
-            }else{
-		console.log("Load specific symbol page by firm for " + symbolName);
-                console.log("Success, Took %d ms", stats.processtime);
-            }
-
-	    res.render('specificStocks', {
-		"forecast" : docs,
-		title: symbolName
 	    });
         });
     };
