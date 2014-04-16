@@ -5,6 +5,7 @@ var analyst = require('./routes/analyst');
 var firm = require('./routes/firm');
 var post = require('./routes/post');
 var stock = require('./routes/stock');
+var search = require('./routes/search');
 var http = require('http');
 var path = require('path');
 var favicons = require('static-favicon');
@@ -95,7 +96,8 @@ app.get('/analysts', analyst.avg(Analyst, firmSchema));
 app.get('/analysts/:analystName', analyst.specific(Firm, firmSchema));
 //app.get('/analysts', routes.dne());
 app.get('/stocks', stock.avg(Stock, firmSchema));
-app.get('/stocks/:stockName', stock.specific(Stock, firmSchema));
+app.get('/stocks/:symbolName', stock.specific(Stock, firmSchema));
 app.get('/posts/:postID', post.view(Post, postSchema));
+app.get('/search/:searchTerm', search.query());
 
 http.createServer(app)
