@@ -57,7 +57,7 @@ exports.specific = function(Stock, firmSchema) {
                 console.log("Error: ", err);
             }else{
 		console.log("Load specific symbol page by firm for " + symbolName);
-                console.log("Success, Took %d ms", stats.processtime);
+                console.log("Success.");
             }
 
 	    res.render('specificStocks', {

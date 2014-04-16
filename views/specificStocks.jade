@@ -69,9 +69,10 @@ o-icons.min.css')
       // Font and paired font of .heading/.subheading and body from Google Fonts 
       // www.google.com/fonts/specimen/Ubuntu 
       // www.google.com/fonts/specimen/Ubuntu#pairings 
+      h1(style='padding-bottom: 10px;' align="center") #{title} - #{forecast[1].Company}   
       p &nbsp;
-      div(id="AMchartdiv" style="background: #545454; color: #ffffff; width: 100%; height: 500px")
-      p &nbsp;
+      div(id="AMchartdiv" style="background: #545454; color: #ffffff; width: 100%; height: 500px;")
+      p(style='padding-bottom: 30px;')  
       table.table-striped(id="firmTable" align="center" width="85%" cellpadding="0" cellspacing="0" border="0")
         thead
           tr
@@ -95,9 +96,9 @@ o-icons.min.css')
               td
                 p #{doc.Rating}
               td
-                p heyyyy
+                p #{doc.Price_int}
               td
-                p hooooo
+                p #{doc.Percent_Diff}
                 
                             
       .row-fluid.subheading
