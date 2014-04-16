@@ -45,7 +45,7 @@ o-icons.min.css')
                 a(href='/firms') Firms
               li(id='stocks_li')
                 a(href='/stocks') Stocks
-            form.navbar-search.pull-right.form-search(action='')
+            form.navbar-search.pull-right.form-search(method='get' action='/search/:searchTerm')
               .input-append
                 input.span2.search-query(type='text')
                 button.btn(type='submit')
@@ -94,7 +94,9 @@ o-icons.min.css')
                   a.link(href='posts/'+poop._id) #{poop.PostTitle}
                 p #{poop.Post}  
 
-  
+      ul.nav.nav-list
+        li.divider
+
       //
          For the FAQ, we introduce a little bit of JS, using the accordion. 
       //
