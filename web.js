@@ -8,7 +8,7 @@ var stock = require('./routes/stock');
 var search = require('./routes/search');
 var http = require('http');
 var path = require('path');
-var favicons = require('static-favicon');
+var favicon = require('static-favicon');
 var bodyParser = require('body-parser');
 var router = require('app-router');
 var connect = require('connect');
@@ -78,7 +78,7 @@ app.use(function(request, response, next) {
 app.set("views", __dirname + "/views");
 app.set('view engine', 'jade');
 app.set('view options', {layout: false});
-app.use(favicons());
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(bodyParser());
 app.use(require('method-override')());
 app.use(serveStatic(path.join(__dirname, 'public')));
@@ -98,6 +98,6 @@ app.get('/analysts/:analystName', analyst.specific(Firm, firmSchema));
 app.get('/stocks', stock.avg(Stock, firmSchema));
 app.get('/stocks/:symbolName', stock.specific(Stock, firmSchema));
 app.get('/posts/:postID', post.view(Post, postSchema));
-app.get('/search/:searchTerm', search.query());
+app.get('/search', search.query());
 
 http.createServer(app)
