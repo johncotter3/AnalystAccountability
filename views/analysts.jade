@@ -70,12 +70,15 @@ o-icons.min.css')
           table.table-striped(id="firmTable" align="center" width="85%" cellpadding="0" cellspacing="0" border="0")
             thead
               tr
-                th
-                  h3 Analyst
-                th
-                  h3 Percent Error
-                th
-                  h3 Number Ratings
+                th(height="15")
+                  p
+                    b Analyst
+                th(height="15")
+                  p
+                    b Percent Error
+                th(height="15")
+                  p
+                    b Number Ratings
             tbody        
               each doc, i in forecast
                 tr

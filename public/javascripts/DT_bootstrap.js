@@ -55,7 +55,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
 		},
 
 		"fnUpdate": function ( oSettings, fnDraw ) {
-			var iListLength = 5;
+			var iListLength = 3;
 			var oPaging = oSettings.oInstance.fnPagingInfo();
 			var an = oSettings.aanFeatures.p;
 			var i, ien, j, sClass, iStart, iEnd, iHalf=Math.floor(iListLength/2);
@@ -154,7 +154,10 @@ $(document).ready(function() {
 		"sPaginationType": "bootstrap",
 	        "sScrollx": "auto",
 		"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
-		}
+			"sLengthMenu": "_MENU_ per page"
+		},    
+		"bProcessing": true,
+	        "sScrollX": "100%",
+	        "bScrollCollapse": true
 	} );
-} );OBOB
+} );
