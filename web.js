@@ -1,13 +1,37 @@
 var express = require('express');
 var fs = require('fs');
 var routes = require('./routes');
-var analyst = require('./routes/analyst')
-  , firm = require('./routes/firm');
+var analyst = require('./routes/analyst');
+var firm = require('./routes/firm');
+var post = require('./routes/post');
+var stock = require('./routes/stock');
+var search = require('./routes/search');
 var http = require('http');
 var path = require('path');
+var favicon = require('static-favicon');
+var bodyParser = require('body-parser');
+var router = require('app-router');
+var connect = require('connect');
+var serveStatic = require('serve-static');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/AnalystData');
+//mongoose.connect('mongodb://ip-172-31-40-77/AnalystData');
+var config = {       
+    "USER"    : "",                  
+    "PASS"    : "",       
+    "HOST"    : "ec2-54-213-144-38.us-west-2.compute.amazonaws.com",         
+    "PORT"    : "27017",        
+    "DATABASE" : "AnalystData"     
+};
+var dbPath  = "mongodb://"+
+    config.USER + ":"+     
+    config.PASS + "@"+     
+    config.HOST + ":"+    
+    config.PORT + "/"+     
+    config.DATABASE;
+//mongoose.connect(dbPath);
+mongoose.connect('mongodb://johncotter:johncotter@ds049337.mongolab.com:49337/analystaccountability')
+
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -16,32 +40,48 @@ db.once('open', function callback () {
 });
 
 var firmSchema = new mongoose.Schema({
-            Firm: String
-            , _id: String
-            , Analyst: String
-            , Date: Date
-            , Symbol: String
-            , Percent_Diff: Number
-            , value: {
-                count: Number,
-                qty: Number,
-                avg: Number
-            }
-        });
-var Firm = mongoose.model('Firm', firmSchema, 'TestData');
-var Analyst = mongoose.model('Analyst', firmSchema, 'TestData');
-
+    Firm: String
+    , _id: String
+    , Analyst: String
+    , Date: Date
+    , Symbol: String
+    , Company: String
+    , Rating: String
+    , Price_int: Number
+    , Actual: Number
+    , Percent_Diff: Number
+    , value: {
+	count: Number,
+        qty: Number,
+        avg: Number
+    }
+});
+var Firm = mongoose.model('Firm', firmSchema, 'AnalystData');
+var Analyst = mongoose.model('Analyst', firmSchema, 'AnalystData');
+var Stock = mongoose.model('Stock', firmSchema, 'AnalystData');
+var postSchema = new mongoose.Schema({
+    _id : String
+    , Date : Date
+    , Post : String
+    , PostTitle : String
+    , PostImage : String
+});
+var Post = mongoose.model('Post', postSchema, 'PostData');
 
 var app = express();
+// Logging middleware
+app.use(function(request, response, next) {
+  console.log("In comes a " + request.method + " to " + request.url);
+  next();
+});
 
-app.set('views', path.join(__dirname, 'views'));
+app.set("views", __dirname + "/views");
 app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('view options', {layout: false});
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(bodyParser());
+app.use(require('method-override')());
+app.use(serveStatic(path.join(__dirname, 'public')));
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
@@ -49,7 +89,15 @@ app.listen(port, function() {
 });
 
 
-app.get('/', routes.index);
+app.get('/', routes.index(postSchema));
 app.get('/firms', firm.avg(Firm, firmSchema));
 app.get('/firms/:firmName', firm.specific(Firm, firmSchema));
 app.get('/analysts', analyst.avg(Analyst, firmSchema));
+app.get('/analysts/:analystName', analyst.specific(Firm, firmSchema));
+//app.get('/analysts', routes.dne());
+app.get('/stocks', stock.avg(Stock, firmSchema));
+app.get('/stocks/:symbolName', stock.specific(Stock, firmSchema));
+app.get('/posts/:postID', post.view(Post, postSchema));
+app.get('/search', search.query());
+
+http.createServer(app)

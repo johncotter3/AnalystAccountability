@@ -7,18 +7,25 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "2.5.x",
+    "express": "~3.4.x",
     "jade": "*",     
     "mongodb" : "*",
-    "monk" : "*"
+    "monk" : "*",
+    "mongoose" : "*",
+    "static-favicon" : "*",
+    "body-parser" : "*",
+    "app-router" : "*",
+    "method-override" : "*",
+    "connect" : "*",
+    "serve-static" : "*"  
   },
   "engines": {
-    "node": "0.8.x",
+    "node": "0.10.x",
     "npm": "1.1.x"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-sample"
+    "url": "https://github.com/johncotter3/AnalystAccountability"
   },
   "keywords": [
     "node",
