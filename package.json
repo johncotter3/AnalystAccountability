@@ -17,7 +17,8 @@
     "app-router" : "*",
     "method-override" : "*",
     "connect" : "*",
-    "serve-static" : "*"  
+    "serve-static" : "*",
+    "yahoo-finance" : "*"  
   },
   "engines": {
     "node": "0.10.x",
