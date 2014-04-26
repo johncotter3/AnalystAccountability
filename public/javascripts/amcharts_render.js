@@ -87,17 +87,17 @@ for (i=0; i<events.length; i++){
     case "Downgrades":
 	events[i].backgroundColor = "#CDCDCD";
 	events[i].text = "D";
-	events[i].description = "DOWNGRADE by " + events[i].Firm + "on " + mm+dd+yyyy + "\nTarget Price: " + events[i].Price_int;
+	events[i].description = "DOWNGRADE by " + events[i].Firm + " on " + mm+'-'+dd+'-'+yyyy + "\nTarget Price: " + events[i].Price_int;
 	break;
     case "Upgrades":
 	events[i].backgroundColor = "#85CDE6";
 	events[i].text = "U";
-	events[i].description = "UPGRADE by " + events[i].Firm + "on " + mm+dd+yyyy + "\nTarget Price: " + events[i].Price_int;
+	events[i].description = "UPGRADE by " + events[i].Firm + " on " + mm+'-'+dd+'-'+yyyy + "\nTarget Price: " + events[i].Price_int;
 	break;
     default:
 	events[i].backgroundColor = "#D8BFD8";
 	events[i].text = "R";
-	events[i].description = "OTHER by " + events[i].Firm + "on " + mm+dd+yyyy + "\nTarget Price: " + events[i].Price_int;
+	events[i].description = "OTHER by " + events[i].Firm + " on " + mm+'-'+dd+'-'+yyyy + "\nTarget Price: " + events[i].Price_int;
     } 
     console.log(Date.parse(events[i].date));
 }    
