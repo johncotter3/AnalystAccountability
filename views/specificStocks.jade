@@ -75,10 +75,12 @@ o-icons.min.css')
       p &nbsp;
       div(id="AMchartdiv" style="background: #545454; color: #ffffff; width: 100%; height: 500px;")
       p(style='padding-bottom: 30px;')  
-      table.table-striped(id="firmTable" align="center" width="85%" cellpadding="0" cellspacing="0" border="0")
+      table.table-striped(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0")
         thead
           tr
             th
+              h3 Date
+            th    
               h3 Firm
             th
               h3 Analyst
@@ -92,6 +94,8 @@ o-icons.min.css')
           each doc, i in forecast
             tr
               td
+                p #{doc.Date.getMonth()+1}/#{doc.Date.getDate()}/#{doc.Date.getFullYear()}
+              td    
                 p #{doc.Firm}
               td
                 p #{doc.Analyst}

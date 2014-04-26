@@ -90,6 +90,12 @@ body{
         margin: 0 auto;
       }
 
+      div.dataTables_filter {
+	  text-align: right;
+      }
+      div.dataTables_length {
+	  text-align: left;
+      }
       table,td,th
       {
 	  border:1px solid black;
