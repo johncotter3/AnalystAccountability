@@ -5,8 +5,7 @@ html(lang='en')
     title Analyst Accountability
 
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.n\
-o-icons.min.css')
+    link(rel='stylesheet', href='/stylesheets/startup_code_bootstrap-combined.no-icons.min.css')
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css')
     link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css')
     script(src='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js')
@@ -68,10 +67,10 @@ o-icons.min.css')
         .span12
           block content
             p &nbsp;
+            h1(style='padding-bottom: 10px;') #{docs.PostTitle}
+            p &nbsp;
             p
               img.img-polaroid(alt=docs.PostTitle, src=docs.PostImage width='720' height='450')
-            p &nbsp;
-            h1(style='padding-bottom: 10px;') #{docs.PostTitle}
             p #{docs.Post}
             p #{docs.Date}  
                             

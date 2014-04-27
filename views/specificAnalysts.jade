@@ -5,8 +5,7 @@ html(lang='en')
     title Analyst Accountability
 
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.n\
-o-icons.min.css')
+    link(rel='stylesheet', href='/stylesheets/startup_code_bootstrap-combined.no-icons.min.css')
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css')
     link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css')
     script(src='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js')
@@ -84,22 +83,22 @@ o-icons.min.css')
                   th
                     h3 Percent Error
               tbody      
-                each poop, i in forecast
+                each doc, i in forecast
                   tr
                     td
-                      p #{poop.Date}
+                      p #{doc.Date.getMonth()+1}/#{doc.Date.getDate()}/#{doc.Date.getFullYear()}
                     td
-                      p #{poop.Symbol}
+                      p #{doc.Symbol}
                     td
-                      p #{poop.Company}
+                      p #{doc.Company}
                     td
-                      p #{poop.Rating}
+                      p #{doc.Rating}
                     td
-                      p #{poop.Price_int}
+                      p #{doc.Price_int}
                     td
-                      p #{poop.Actual}
+                      p #{doc.Actual}
                     td
-                      p #{poop.Percent_Diff}
+                      p #{doc.Percent_Diff}
     
                             
       .row-fluid.subheading

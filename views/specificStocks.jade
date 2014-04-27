@@ -5,8 +5,7 @@ html(lang='en')
     title Analyst Accountability
 
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.n\
-o-icons.min.css')
+    link(rel='stylesheet', href='/stylesheets/startup_code_bootstrap-combined.no-icons.min.css')
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css')
     link(rel='stylesheet', href='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css')
     script(src='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js')
@@ -68,43 +67,45 @@ o-icons.min.css')
     //- blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ 
     //- http://stackoverflow.com/a/12270322 
     .container
-      //- Font and paired font of .heading/.subheading and body from Google Fonts 
-      //- www.google.com/fonts/specimen/Ubuntu 
-      //- www.google.com/fonts/specimen/Ubuntu#pairings 
-      h1(style='padding-bottom: 10px;' align="center") #{title} - #{forecast[1].Company}   
-      p &nbsp;
-      div(id="AMchartdiv" style="background: #545454; color: #ffffff; width: 100%; height: 500px;")
-      p(style='padding-bottom: 30px;')  
-      table.table-striped(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0")
-        thead
-          tr
-            th
-              h3 Date
-            th    
-              h3 Firm
-            th
-              h3 Analyst
-            th
-              h3 Rating
-            th
-              h3 Price Target
-            th
-              h3 Percent Error
-        tbody
-          each doc, i in forecast
-            tr
-              td
-                p #{doc.Date.getMonth()+1}/#{doc.Date.getDate()}/#{doc.Date.getFullYear()}
-              td    
-                p #{doc.Firm}
-              td
-                p #{doc.Analyst}
-              td
-                p #{doc.Rating}
-              td
-                p #{doc.Price_int}
-              td
-                p #{doc.Percent_Diff}
+      .row-fluid.heading
+        .span12
+          //- Font and paired font of .heading/.subheading and body from Google Fonts 
+          //- www.google.com/fonts/specimen/Ubuntu 
+          //- www.google.com/fonts/specimen/Ubuntu#pairings 
+          h1(style='padding-bottom: 10px;' align="center") #{title} - #{forecast[1].Company}   
+          p &nbsp;
+          div(id="AMchartdiv" style="background: #545454; color: #ffffff; width: 100%; height: 500px;")
+          p(style='padding-bottom: 30px;')  
+          table.table-striped(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0")
+            thead
+              tr
+                th
+                  h3 Date
+                th    
+                  h3 Firm
+                th
+                  h3 Analyst
+                th
+                  h3 Rating
+                th
+                  h3 Price Target
+                th
+                  h3 Percent Error
+            tbody
+              each doc, i in forecast
+                tr
+                  td
+                    p #{doc.Date.getMonth()+1}/#{doc.Date.getDate()}/#{doc.Date.getFullYear()}
+                  td    
+                    p #{doc.Firm}
+                  td
+                    p #{doc.Analyst}
+                  td
+                    p #{doc.Rating}
+                  td
+                    p #{doc.Price_int}
+                  td
+                    p #{doc.Percent_Diff}
                 
                             
       .row-fluid.subheading
