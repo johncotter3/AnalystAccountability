@@ -91,7 +91,8 @@ html(lang='en')
               .span5.copy
                 h3 
                   a.link(href='posts/'+poop._id) #{poop.PostTitle}
-                p #{poop.Post}  
+                p !{poop.Post} ...
+                  a.link(href='posts/'+poop._id) (Read More)
 
       ul.nav.nav-list
         li.divider

@@ -69,10 +69,11 @@ html(lang='en')
             p &nbsp;
             h1(style='padding-bottom: 10px;') #{docs.PostTitle}
             p &nbsp;
-            p
+            p(style='padding-bottom: 20px;')
               img.img-polaroid(alt=docs.PostTitle, src=docs.PostImage width='720' height='450')
-            p #{docs.Post}
-            p #{docs.Date}  
+            div(style="width: 720px; margin:0 auto;")
+              p(style='text-align: justify;') !{docs.Post}
+              p #{docs.Date}  
                             
       .row-fluid.subheading
         .span12
