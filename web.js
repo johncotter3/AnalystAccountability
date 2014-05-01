@@ -88,6 +88,7 @@ app.use(csrf());
 app.use(bodyParser());
 app.use(require('method-override')());
 app.use(serveStatic(path.join(__dirname, 'public')));
+//sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log("Listening on " + port);
