@@ -19,7 +19,9 @@
     "connect" : "*",
     "serve-static" : "*",
     "yahoo-finance" : "*",
-    "uvrun" : "*"  
+    "uvrun" : "*",
+    "sendgrid" : "*",
+    "validator" : "*"  
   },
   "engines": {
     "node": "0.10.x",

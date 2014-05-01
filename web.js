@@ -10,12 +10,19 @@ var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var connect = require('connect');
+var csrf = require('csrf');
 var router = require('app-router');
 var connect = require('connect');
 var serveStatic = require('serve-static');
+var SendGrid = require('sendgrid').SendGrid;
+var Validator = require('validator').Validator;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://ip-172-31-40-77/AnalystData');
+
+// MongoDB connection Stuff
 var config = {       
     "USER"    : "",                  
     "PASS"    : "",       
@@ -29,16 +36,12 @@ var dbPath  = "mongodb://"+
     config.HOST + ":"+    
     config.PORT + "/"+     
     config.DATABASE;
-//mongoose.connect(dbPath);
 mongoose.connect('mongodb://johncotter:johncotter@ds049337.mongolab.com:49337/analystaccountability')
-
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
   console.log("yay!");
-    
 });
-
 var firmSchema = new mongoose.Schema({
     Firm: String
     , _id: String
@@ -68,27 +71,29 @@ var postSchema = new mongoose.Schema({
 });
 var Post = mongoose.model('Post', postSchema, 'PostData');
 
+
+// App configuration
 var app = express();
-// Logging middleware
 app.use(function(request, response, next) {
   console.log("In comes a " + request.method + " to " + request.url);
   next();
 });
-
 app.set("views", __dirname + "/views");
 app.set('view engine', 'jade');
 app.set('view options', {layout: false});
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(cookieParser());
+app.use(session({secret: 'Secret goes here'}));
+app.use(csrf());
 app.use(bodyParser());
 app.use(require('method-override')());
 app.use(serveStatic(path.join(__dirname, 'public')));
-
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
 
-
+// App Routes
 app.get('/', routes.index(postSchema));
 app.get('/firms', firm.avg(Firm, firmSchema));
 app.get('/firms/:firmName', firm.specific(Firm, firmSchema));
@@ -100,4 +105,5 @@ app.get('/stocks/:symbolName', stock.specific(Stock, firmSchema));
 app.get('/posts/:postID', post.view(Post, postSchema));
 app.get('/search', search.query());
 
+// Create Web App
 http.createServer(app)
