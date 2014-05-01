@@ -66,14 +66,13 @@ html(lang='en')
       .row-fluid.heading
         .span12
           block content
-            p &nbsp;
+            br 
             h1(style='padding-bottom: 10px;') #{docs.PostTitle}
-            p &nbsp;
+            br
             p(style='padding-bottom: 20px;')
               img.img-polaroid(alt=docs.PostTitle, src=docs.PostImage width='720' height='450')
-            div(style="width: 720px; margin:0 auto;")
-              p(style='text-align: justify;') !{docs.Post}
-              p #{docs.Date}  
+            p(style='max-width: 720px; text-align: justify; margin: 0 auto;') !{docs.Post}
+            p #{docs.Date}  
                             
       .row-fluid.subheading
         .span12

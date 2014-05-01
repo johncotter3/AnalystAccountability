@@ -90,8 +90,9 @@ html(lang='en')
                   img.img-polaroid(alt=poop.PostTitle, src=poop.PostImage width='480' height='300')
               .span5.copy
                 h3 
-                  a.link(href='posts/'+poop._id) #{poop.PostTitle}
-                p #{poop.Post}  
+                  a.link(href='posts/'+poop._id style="text-align: -webkit-left;") #{poop.PostTitle}
+                p !{poop.Post} ...
+                  a.link(href='posts/'+poop._id) (Read More)
 
       ul.nav.nav-list
         li.divider
@@ -140,4 +141,4 @@ html(lang='en')
       a.async=1;
       a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); 
       ga('create', 'UA-43111947-1', 'AnalystAccountability.com'); 
-      ga('send', 'pageview');OBOBOBBOBBOBOBBOBA
+      ga('send', 'pageview');
