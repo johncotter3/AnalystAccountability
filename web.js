@@ -6,6 +6,7 @@ var firm = require('./routes/firm');
 var post = require('./routes/post');
 var stock = require('./routes/stock');
 var search = require('./routes/search');
+var contact = require('./routes/contact');
 var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -17,7 +18,8 @@ var csrf = require('csrf');
 var router = require('app-router');
 var connect = require('connect');
 var serveStatic = require('serve-static');
-var SendGrid = require('sendgrid').SendGrid;
+var sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+var email = new sendgrid.Email();
 var Validator = require('validator').Validator;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -71,6 +73,10 @@ var postSchema = new mongoose.Schema({
 });
 var Post = mongoose.model('Post', postSchema, 'PostData');
 
+function csrf(req, res, next) {
+  res.locals.token = req.session._csrf;
+  next();
+}
 
 // App configuration
 var app = express();
@@ -84,11 +90,12 @@ app.set('view options', {layout: false});
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(cookieParser());
 app.use(session({secret: 'Secret goes here'}));
-app.use(csrf());
+//app.use(csrf());
 app.use(bodyParser());
+app.locals.errors = {};
+app.locals.message = {};
 app.use(require('method-override')());
 app.use(serveStatic(path.join(__dirname, 'public')));
-//sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log("Listening on " + port);
@@ -105,6 +112,8 @@ app.get('/stocks', stock.avg(Stock, firmSchema));
 app.get('/stocks/:symbolName', stock.specific(Stock, firmSchema));
 app.get('/posts/:postID', post.view(Post, postSchema));
 app.get('/search', search.query());
+app.get('/contact', contact.formGet());
+app.post('/contact', contact.formPost()); 
 
 // Create Web App
 http.createServer(app)

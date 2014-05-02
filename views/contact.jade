@@ -45,6 +45,8 @@ html(lang='en')
                 a(href='/firms') Firms
               li(id='stocks_li')
                 a(href='/stocks') Stocks
+              li(id='contact_li').active
+                a(href='/contact') Contact
             form.navbar-search.pull-right.form-search(method='get' action='/search')
               .input-append
                 input.span2.search-query(type='text' name='q')
@@ -75,6 +77,10 @@ html(lang='en')
           label.control-label(for='message_email') Email
           .controls
             input#message_email.input-xxlarge(type='text', placeholder='Email', name='message[email]', value=message.email)
+        .control-group
+          label.control-label(for='message_subject') Subject
+          .controls
+            input#message_subject.input-xxlarge(type='text', placeholder='Subject', name='message[subject]', value=message.subject)
         .control-group
           label.control-label(for='message_message') Message
           .controls

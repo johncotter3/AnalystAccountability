@@ -1,0 +1,106 @@
+/*
+ * GET Contact Form Page
+*/
+
+var v = require('validator');
+var sendgrid = require('sendgrid')('johncotter','J3oh69n1!');
+//process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+
+function validate(message) {
+  
+  errors = [];
+  /*
+  v.error = function(msg) {
+    errors.push(msg);
+  };
+
+  v.check(message.name, 'Please enter your name').len(1, 100);
+  v.check(message.email, 'Please enter a valid email address').isEmail();
+  v.check(message.subject, 'Please enter a valid subject').len(1,150);
+  v.check(message.message, 'Please enter a valid message').len(1, 1000);
+*/
+    if(v.isLength(message.name,1,100) == false){
+	errors.push('Please enter your name');
+    }
+    if(v.isEmail(message.email) == false){
+	errors.push('Please enter a valid email address');
+    }
+    if(v.isLength(message.subject,1,250) == false){
+        errors.push('Please enter a valid subject');
+    }
+    if(v.isLength(message.message,1,1000) == false){
+        errors.push('Please enter a valid message. Either you didn\'t write one or you wrote a novel. Please use less than 1000 characters.');
+    }
+
+  return errors;
+}
+
+function sendEmail(message, fn) {
+    var ret;
+    var email = new sendgrid.Email();
+    email.addTo('john.cotter.3@gmail.com');
+    email.setFrom('john.cotter.3@gmail.com');
+	//message.email);
+    email.setSubject('Analyst Accountability Contact Form: '+message.subject);
+    email.setHtml(['<h4>FROM: </h4>',
+		   '<p>'+message.name+'</p>',
+		   '<h4>Subject: ',
+		   '<p>'+message.subject+'</p>',
+		   '<h4>MESSAGE: </h4>',
+		   '<p>'+message.message+'</p>'
+		  ]);
+
+
+    sendgrid.send(email, function(err, json){
+	if (err){ return console.error(err);}
+	console.log(json);
+	//ret = json.message;
+	return json;
+    });
+    console.log('here? 1.0');
+/*{
+    to: process.env.EMAIL_RECIPIENT
+  , from: message.email
+  , subject: message.subject
+  , text: 'FROM: '+message.name+'\nMESSAGE: '+message.message
+  }, fn);*/
+    //console.log(ret);
+    //return ret;
+}
+
+exports.formGet = function() {
+    return function(req, res) {
+	res.render('contact');
+    }
+};
+
+exports.formPost = function() {
+    return function(req, res) {
+	var message = req.body.message
+	, errors = validate(message)
+	, locals = {}
+	;
+	console.log('Message: '+message);
+	function render() {
+	    res.render('contact', locals);
+	}
+	
+	if (errors.length === 0) {
+	    sendEmail(message, function(success) {
+		if (!success) {
+		    locals.error = 'Error sending message';
+		    locals.message = message;
+		} else {
+		    locals.notice = 'Your message has been sent.';
+		    console.log('here? 2.0');
+		}
+		render();
+	    });
+	} else {
+	    locals.error = 'Your message has errors:';
+	    locals.errors = errors;
+	    locals.message = message;
+	    render();
+	}
+    }
+};
