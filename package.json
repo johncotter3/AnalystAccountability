@@ -21,7 +21,12 @@
     "yahoo-finance" : "*",
     "uvrun" : "*",
     "sendgrid" : "*",
-    "validator" : "*"  
+    "validator" : "*",
+    "cookie-parser" : "*",
+    "express-session" : "*",
+    "connect" : "*",
+    "csrf" : "*",
+      
   },
   "engines": {
     "node": "0.10.x",
