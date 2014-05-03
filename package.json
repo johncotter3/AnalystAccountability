@@ -24,8 +24,7 @@
     "validator" : "*",
     "cookie-parser" : "*",
     "express-session" : "*",
-    "csrf" : "*",
-      
+    "csrf" : "*"     
   },
   "engines": {
     "node": "0.10.x",
