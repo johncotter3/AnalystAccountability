@@ -74,11 +74,11 @@ exports.specific = function(Stock, firmSchema) {
 
 		return yy+'-'+mm+'-'+dd;
             };
-
+	    
             yahooFinance.historical({
 		symbol: symbolName,
 		from: '2009-01-01',
-		to: '2014-01-01'
+		to: null
             }, function(err, quotes, url, symbol){
 		for (var i=0; i<quotes.length; i++){
 		    d = quotes[quotes.length - 1 - i];
