@@ -27,7 +27,7 @@ function parseCSV (data) {
     // CSV settings
     var separator = ",";  // use comma for column separator
     var skip = 1;         // skip first row
-    console.log(data);
+    //console.log(data);
     data = data.replace (/\\n/g, "\n");
     //replace UNIX new lines
     data = data.replace (/\r\n/g, "\n");
@@ -70,7 +70,7 @@ function parseCSV (data) {
             chartData.unshift(dItem);
 	}
     }
-    console.debug(chartData);
+    //console.debug(chartData);
 }
 
 var events = JSON.parse(events);
@@ -83,7 +83,7 @@ for (i=0; i<events.length; i++){
     events[i].graph = "g1";
     events[i].type = "sign";
     events[i].datestr = mm+'-'+dd+'-'+yyyy;
-    console.log(events[i].Type);
+    //console.log(events[i].Type);
     switch(events[i].Type){
     case "Downgrades":
 	events[i].backgroundColor = "#CDCDCD";
@@ -100,10 +100,10 @@ for (i=0; i<events.length; i++){
 	events[i].text = "R";
 	events[i].description = "OTHER by " + events[i].Firm + " on " + datestr + "\nTarget Price: " + events[i].Price_int;
     } 
-    console.log(Date.parse(events[i].date));
+    //console.log(Date.parse(events[i].date));
 }    
 
-console.log(JSON.stringify(events));
+//console.log(JSON.stringify(events));
 
 var chart = AmCharts.makeChart("AMchartdiv", {
     type: "stock",
@@ -195,7 +195,6 @@ var chart = AmCharts.makeChart("AMchartdiv", {
 	}]*/
     }],
 
-
     panels: [{
 	title: title,
 	percentHeight: 70,
@@ -247,13 +246,40 @@ var chart = AmCharts.makeChart("AMchartdiv", {
     }
 });
 
+chart.addListener("init", zoomChart());
+//zoomChart();
+
+// this method is called when chart is first inited as we listen for "dataUpdated" event
+function zoomChart() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    //chart.zoomToIndexes(chartData.length - 360, chartData.length - 1);
+    //startDate = chart.startDate;
+    //endDate = new Date();
+    //startDate = new Date();
+    //startDate.setDate(endDate.getDate()-2*365)
+    //endDate = chart.endDate;
+    //console.log(typeof endDate);
+    //startDate.setDate(endDate.getDate()-1);
+    //console.log(startDate);
+    //console.log(endDate);
+    //chart.zoomToDates(startDate, endDate);
+    console.log(chartData.length);
+    chart.zoomToIndexes(10,20);
+    //chart.zoomToIndexes(chartData.length-2*365, chartData.length - 1);
+}
+
+
 // this method is called each time the selected period of the chart is changed
-function handleZoom(event) {
+/*function handleZoom(event) {
     var startDate = event.startDate;
+    //console.log(startDate);
+    //startDate = new Date();
+    //startDate.setDate(startDate.getDate()-365; 
     var endDate = event.endDate;
+    //endDate = new Date();
     document.getElementById("startDate").value = AmCharts.formatDate(startDate, "DD/MM/YYYY");
     document.getElementById("endDate").value = AmCharts.formatDate(endDate, "DD/MM/YYYY");
 
     // as we also want to change graph type depending on the selected period, we call this method
     changeGraphType(event);
-}
+}*/

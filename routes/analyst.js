@@ -28,7 +28,7 @@ exports.avg = function(Analyst, firmSchema){
             return reducedVal;
         };
         //o.out = { replace: 'map_reduce_TestData'};
-	o.out = 'map_reduce_analystAvg';
+	o.out = 'map_reduce_results';
 	o.verbose = true;
         Analyst.mapReduce(o, function (err, model, stats) {
 	    if(err){
