@@ -112,6 +112,8 @@ app.get('/posts/:postID', post.view(Post, postSchema));
 app.get('/search', search.query());
 app.get('/contact', contact.formGet());
 app.post('/contact', contact.formPost()); 
+require('./node-login/app/server/router')(app);
+
 
 // Create Web App
 http.createServer(app)
