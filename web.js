@@ -23,20 +23,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
 // MongoDB connection Stuff
-var config = {       
-    "USER"    : "",                  
-    "PASS"    : "",       
-    "HOST"    : "ec2-54-213-144-38.us-west-2.compute.amazonaws.com",         
-    "PORT"    : "27017",        
-    "DATABASE" : "AnalystData"     
-};
-var dbPath  = "mongodb://"+
-    config.USER + ":"+     
-    config.PASS + "@"+     
-    config.HOST + ":"+    
-    config.PORT + "/"+     
-    config.DATABASE;
-mongoose.connect('mongodb://johncotter:johncotter@ds049337.mongolab.com:49337/analystaccountability')
+mongoose.connect(process.env.MONGOLAB_CONNECT_URL)
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
