@@ -1,15 +1,17 @@
 
-extends layout
+extends ../layout
 
 block content
-	include account
-	include modals/alert
+  include account
+  include modals/alert
 
 block scripts
-	script(src='/vendor/jquery.min.js')
-	script(src='/vendor/jquery.form.js')
-	script(src='/vendor/bootstrap-modal.js')
-	script(src='/vendor/bootstrap-transition.js')
-	script(src='/js/views/signup.js')
-	script(src='/js/controllers/signupController.js')
-	script(src='/js/form-validators/accountValidator.js')
+  link(rel='stylesheet', href='../../node-login/app/public/vendor/bootstrap.min.css')
+  link(rel='stylesheet', href='../../node-login/app/public/css/style.css')
+  script(src='../../node-login/app/public/vendor/jquery.min.js')
+  script(src='../../node-login/app/public/vendor/jquery.form.js')
+  script(src='../../node-login/app/public/vendor/bootstrap-modal.js')
+  script(src='../../node-login/app/public/vendor/bootstrap-transition.js')
+  script(src='../../node-login/app/public/js/views/signup.js')
+  script(src='../../node-login/app/public/js/controllers/signupController.js')
+  script(src='../../node-login/app/public/js/form-validators/accountValidator.js')
