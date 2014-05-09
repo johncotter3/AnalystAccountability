@@ -1,25 +1,20 @@
 
-extends layout
+extends ../layout
 
 block content
-	div.navbar.navbar-fixed-top
-		div.navbar-inner
-			div.container-fluid
-				ul#global-nav.nav.pull-left
-					a(href='#').brand Control Panel
-				button#btn-logout.btn.btn-primary
-					i.icon-lock.icon-white
-					| Sign Out
-
 	include account
 	include modals/alert
 	include modals/confirm
 
+block extraHeader
+  link(rel='stylesheet', href='node-login/vendor/bootstrap.min.css')
+  link(rel='stylesheet', href='node-login/css/style.css')
+
 block scripts
-	script(src='../node-login/app/public/vendor/jquery.min.js')
-	script(src='../node-login/app/public/vendor/jquery.form.js')
-	script(src='../node-login/app/public/vendor/bootstrap-modal.js')
-	script(src='../node-login/app/public/vendor/bootstrap-transition.js')
-	script(src='../node-login/app/public/js/views/home.js')
-	script(src='../node-login/app/public/js/controllers/homeController.js')
-	script(src='../node-login/app/public/js/form-validators/accountValidator.js')
+  script(src='node-login/vendor/jquery.min.js')
+  script(src='node-login/vendor/jquery.form.js')
+  script(src='node-login/vendor/bootstrap-modal.js')
+  script(src='node-login/vendor/bootstrap-transition.js')
+  script(src='node-login/js/views/home.js')
+  script(src='node-login/js/controllers/homeController.js')
+  script(src='node-login/js/form-validators/accountValidator.js')
