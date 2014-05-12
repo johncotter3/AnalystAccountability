@@ -35,6 +35,7 @@ function validate(message) {
 }
 
 function sendEmail(message, fn) {
+    // Is this function needed?
     var ret;
     var email = new sendgrid.Email();
     email.addTo(process.env.SENDGRID_TO);
@@ -42,6 +43,8 @@ function sendEmail(message, fn) {
     email.setSubject('Analyst Accountability Contact Form: '+message.subject);
     email.setHtml(['<h4>FROM: </h4>',
 		   '<p>'+message.name+'</p>',
+		   '<h4>EMAIL: </h4>',
+		   '<p>'+message.email+'</p>',
 		   '<h4>SUBJECT: </h4>',
 		   '<p>'+message.subject+'</p>',
 		   '<h4>MESSAGE: </h4>',
@@ -99,6 +102,8 @@ exports.formPost = function() {
 	    email.setSubject('Analyst Accountability Contact Form: '+message.subject);
 	    email.setHtml(['<h4>FROM: </h4>',
 			   '<p>'+message.name+'</p>',
+			   '<h4>EMAIL: </h4>',
+			   '<p>'+message.email+'</p>',
 			   '<h4>SUBJECT: </h4>',
 			   '<p>'+message.subject+'</p>',
 			   '<h4>MESSAGE: </h4>',
