@@ -11,12 +11,13 @@ var dbName 		= 'analystaccountability';
 /* establish the database connection */
 
 var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
-db.authenticate('process.env.MONGOLAB_DB_USER','process.env.MONGOLAB_DB_PASS', function(err, result){});
 db.open(function(e, d){
 	if (e) {
 		console.log(e);
 	}	else{
 		console.log('connected to database :: ' + dbName);
+                d.authenticate(process.env.MONGOLAB_DB_USER,process.env.MONGOLAB_DB_PASS, function(e, o){
+                });
 	}
 });
 var accounts = db.collection('accounts');
@@ -55,7 +56,7 @@ exports.manualLogin = function(user, pass, callback)
 
 exports.addNewAccount = function(newData, callback)
 {
-	accounts.findOne({user:newData.user}, function(e, o) {
+        accounts.findOne({user:newData.user}, function(e, o) {
 		if (o){
 			callback('username-taken');
 		}	else{

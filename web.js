@@ -187,6 +187,7 @@ app.post('/signup', function(req, res){
         country : req.param('country')
     }, function(e){
         if (e){
+	    console.log(e);
             res.send(e, 400);
         }       else{
             res.send('ok', 200);
