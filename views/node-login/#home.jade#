@@ -1,9 +1,10 @@
-
+77;10200;0c
 extends ../layout
 
 block content
   include account
   include modals/alert
+  include modals/confirm
 
 block extraHeader
   //- link(rel='stylesheet', href='node-login/vendor/bootstrap.min.css')
@@ -14,6 +15,6 @@ block scripts
   script(src='node-login/vendor/jquery.form.js')
   script(src='node-login/vendor/bootstrap-modal.js')
   script(src='node-login/vendor/bootstrap-transition.js')
-  script(src='node-login/js/views/signup.js')
-  script(src='node-login/js/controllers/signupController.js')
+  script(src='node-login/js/views/home.js')
+  script(src='node-login/js/controllers/homeController.js')
   script(src='node-login/js/form-validators/accountValidator.js')
