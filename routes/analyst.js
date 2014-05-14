@@ -50,18 +50,22 @@ exports.avg = function(Analyst, firmSchema){
 
 exports.specific = function(Analyst, firmSchema){
     return function(req, res) {
-        var analystName = req.params.analystName;
-	console.log(analystName);
-	Analyst.find({"Analyst": analystName}, function (err, docs) {
-            if(err){
-                console.log("Error: ", err);
-            }else{
-                console.log("Success.");
-            }
-            res.render('specificAnalysts', {
+        if (req.session.user == null) {
+            res.redirect('/');
+        } else {
+	    var analystName = req.params.analystName;
+	    console.log(analystName);
+	    Analyst.find({"Analyst": analystName}, function (err, docs) {
+		if(err){
+                    console.log("Error: ", err);
+		}else{
+                    console.log("Success.");
+		}
+		res.render('specificAnalysts', {
                     "forecast" : docs,
 		    title: analystName
+		});
             });
-        });
+	}
     };
 };
