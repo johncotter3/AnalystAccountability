@@ -50,7 +50,7 @@ exports.avg = function(Stock, firmSchema) {
 exports.specific = function(Stock, firmSchema) {
     return function(req, res) {
 	if (req.session.user == null) {
-            res.redirect('/');
+            res.redirect('/premium');
 	} else {
             var symbolName = req.params.symbolName;
 	    

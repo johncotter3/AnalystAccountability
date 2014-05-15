@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .container
+    .row-fluid.heading
+      .span12
+        p &nbsp;
+        h1(style='padding-bottom: 10px;') Search Results
+        p Searched for #{query}  

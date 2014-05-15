@@ -7,6 +7,7 @@ var post = require('./routes/post');
 var stock = require('./routes/stock');
 var search = require('./routes/search');
 var contact = require('./routes/contact');
+var premium = require('./routes/premium');
 var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -100,6 +101,7 @@ app.get('/stocks', stock.avg(Stock, firmSchema));
 app.get('/stocks/:symbolName', stock.specific(Stock, firmSchema));
 app.get('/posts/:postID', post.view(Post, postSchema));
 app.get('/search', search.query());
+app.get('/premium', premium.view());
 app.get('/contact', contact.formGet());
 app.post('/contact', contact.formPost()); 
 // ****** Login Routes ******

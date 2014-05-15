@@ -1,0 +1,11 @@
+
+/*
+ * GET premium page to convince people it is awesome.
+ */
+
+exports.query = function() {
+    return function(req, res) {
+	res.render('premium');
+    };	
+};
+
