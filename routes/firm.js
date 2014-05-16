@@ -50,10 +50,8 @@ exports.avg = function(Firm, firmSchema) {
 
 exports.specific = function(Firm, firmSchema) {
     return function(req, res) {
-	if (req.session.user == null) {
-            res.redirect('/premium');
-        } else {
-	    var firmName = req.params.firmName;
+	if (req.session.user.member == 'premium') {
+            var firmName = req.params.firmName;
             var o = {};
             o.map = function() {
 		var key = this.Analyst
@@ -95,6 +93,8 @@ exports.specific = function(Firm, firmSchema) {
 		    });    
 		});
             });
+	} else {
+	    res.redirect('/premium');
 	}
     };
 };

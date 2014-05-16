@@ -138,16 +138,17 @@ app.post('/login', function(req, res){
 });
 // logged-in user homepage //
 app.get('/home', function(req, res) {
-    if (req.session.user == null){
-        // if user is not logged-in redirect back to login page //
-        res.redirect('/');
-    }   else{
-        res.render('node-login/home', {
+    if (req.session.user.member == 'premium'){
+        console.log('###############');
+        console.log(req.session.user.member);
+	res.render('node-login/home', {
             title : 'Control Panel',
             countries : CT,
             udata : req.session.user
         });
-    }
+    } else{
+	res.redirect('/');
+    }	
 });
 app.post('/home', function(req, res){
     if (req.param('user') != undefined) {
@@ -186,7 +187,9 @@ app.post('/signup', function(req, res){
         email   : req.param('email'),
         user    : req.param('user'),
         pass    : req.param('pass'),
-        country : req.param('country')
+        country : req.param('country'),
+	member  : 'basic',
+	subscription: 'none'
     }, function(e){
         if (e){
 	    console.log(e);

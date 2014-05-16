@@ -29,6 +29,7 @@ $(document).ready(function(){
 	$('#account-form-btn1').html('Cancel');
 	$('#account-form-btn2').html('Submit');
 	$('#account-form-btn2').addClass('btn-primary');
+        $('#signup-cg').hide();
 	
 // setup the alert that displays when an account is successfully created //
 

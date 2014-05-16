@@ -49,9 +49,7 @@ exports.avg = function(Stock, firmSchema) {
 
 exports.specific = function(Stock, firmSchema) {
     return function(req, res) {
-	if (req.session.user == null) {
-            res.redirect('/premium');
-	} else {
+	if (req.session.user.member == 'premium') {
             var symbolName = req.params.symbolName;
 	    
 	    Stock.find({"Symbol": symbolName}, function (err, docs) {
@@ -109,6 +107,8 @@ exports.specific = function(Stock, firmSchema) {
 		});
 	    
             });
+	} else {
+	    res.redirect('/premium');
 	}
     };
 };

@@ -34,34 +34,22 @@ input(type='hidden', value= user._id)#userId
         label.control-label(for='pass-tf') Password
         .controls
           input#pass-tf.input-xlarge(type='password', name='pass', value='')
-      hr
-      #membership-cg.control-group  
-        label.control-label(for='membership-tf') Membership
+      #signup-cg
+        hr
+        #membership-cg.control-group  
+          label.control-label(for='membership-tf') Membership
+          .controls
+            input#membership-tf.input-xlarge.disabled(type='text', name='membership', value=user.member, disabled)
+        #subscription-cg.control-group
+          label.control-label(for='subscription-tf') Subscription
+          .controls
+            input#subscription-tf.input-xlarge.disabled(type='text', name='subscription', value=user.subscription, disabled)
+        hr
+        label.control-label(for='paypal-tf') Change Subscription  
         .controls
-          input#membership-tf.input-xlarge.disabled(type='text', name='membership', value='', disabled)
-      #subscription-cg.control-group
-        label.control-label(for='subscription-tf') Subscription
-        .controls
-          input#subscription-tf.input-xlarge.disabled(type='text', name='subscription', value='', disabled)
-      hr
-      label.control-label(for='paypal-tf') Change Subscription  
-      .controls
-        form(action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top")
-          input(type="hidden" name="cmd" value="_s-xclick")
-          table
-            tr
-              td
-                input(type="hidden" name="on0" value="Early Bird Special" text="Early Bird Special")
-            tr
-              td
-                select(name="os0")
-                  option(value="Monthly") Monthly : $2.49 USD - monthly
-                  option(value="Yearly") Yearly : $29.99 USD - yearly
-          input(type="hidden" name="currency_code" value="USD")
-          input(type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----")
-          input(type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!")
-          img(alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1")
-
+          a(href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9MYL3ZWST3B3J")
+            img(src="/images/paypal.png")
+          
       .form-actions
       button(type='button')#account-form-btn1.btn
       button(type='submit')#account-form-btn2.btn

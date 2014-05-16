@@ -50,10 +50,8 @@ exports.avg = function(Analyst, firmSchema){
 
 exports.specific = function(Analyst, firmSchema){
     return function(req, res) {
-        if (req.session.user == null) {
-            res.redirect('/premium');
-        } else {
-	    var analystName = req.params.analystName;
+        if (req.session.user.member == 'premium') {
+            var analystName = req.params.analystName;
 	    console.log(analystName);
 	    Analyst.find({"Analyst": analystName}, function (err, docs) {
 		if(err){
@@ -66,6 +64,8 @@ exports.specific = function(Analyst, firmSchema){
 		    title: analystName
 		});
             });
+	} else {
+            res.redirect('/premium');
 	}
     };
 };
