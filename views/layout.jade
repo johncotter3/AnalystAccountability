@@ -10,6 +10,7 @@ html(lang='en')
 
     script(src='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js')
     script(src='https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js')
+    script(src='/js/controllers/homeController.js')  
     link(href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -59,13 +60,15 @@ html(lang='en')
                 a(href='/contact') Contact
             ul.nav.pull-right
               li(id='login_li')
-                a(href='/login') Login
+                a(href='/login' id='login_a') Login
             form.navbar-search.pull-right.form-search(method='get' action='/search')
               .input-append
                 input.span2.search-query(type='text' name='q')
                 button.btn(type='submit')
                   i.icon-search
-            
+    script.
+      if('#{loggedin}'=='true'){var str = document.getElementById("login_a").innerHTML; var res = str.replace('Login','Logout'); document.getElementById("login_a").innerHTML = res; }
+        
   block content
 
     script.

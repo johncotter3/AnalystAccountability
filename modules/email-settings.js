@@ -2,8 +2,8 @@
 module.exports = {
 	
 	host		: 'smtp.gmail.com',
-	user 		: 'your-email-address@gmail.com',
+	user 		: 'john.cotter.3@gmail.com',
 	password 	: 'your-email-password',
-	sender		: 'Your Name <your-email-address@gmail.com>'
+	sender		: 'John Cotter <your-email-address@gmail.com>'
 	
 }

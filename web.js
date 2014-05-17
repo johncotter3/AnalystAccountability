@@ -138,13 +138,14 @@ app.post('/login', function(req, res){
 });
 // logged-in user homepage //
 app.get('/home', function(req, res) {
-    if (req.session.user.member == 'premium'){
+    if (req.session.user != null){
         console.log('###############');
         console.log(req.session.user.member);
 	res.render('node-login/home', {
             title : 'Control Panel',
             countries : CT,
-            udata : req.session.user
+            udata : req.session.user,
+	    loggedin : 'true'
         });
     } else{
 	res.redirect('/');
@@ -269,11 +270,13 @@ app.post('/delete', function(req, res){
   res.redirect('/print');
   });
   });*/
-app.get('*', function(req, res) { res.render('node-login/404', { title: 'Page Not Found'}); });
-
-
-
-//require('./node-login/app/server/router')(app);
+app.get('*', function(req, res) { 
+    if(req.session.user!=null){
+	res.render('node-login/404', { title: 'Page Not Found', loggedin : 'true'}); 
+    } else {
+	res.render('node-login/404', { title: 'Page Not Found'});
+    }
+});
 
 
 // Create Web App
