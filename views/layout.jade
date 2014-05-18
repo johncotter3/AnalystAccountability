@@ -67,7 +67,7 @@ html(lang='en')
                 button.btn(type='submit')
                   i.icon-search
     script.
-      if('#{loggedin}'=='true'){var str = document.getElementById("login_a").innerHTML; var res = str.replace('Login','Logout'); document.getElementById("login_a").innerHTML = res; }
+      if('#{loggedin}'=='true'){var str = document.getElementById("login_a").innerHTML; var res = str.replace('Login','Logout'); document.getElementById("login_a").innerHTML = res; document.getElementById("login_a").removeAttribute("href");}
         
   block content
 

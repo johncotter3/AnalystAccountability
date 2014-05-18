@@ -153,6 +153,7 @@ app.get('/home', function(req, res) {
 });
 app.post('/home', function(req, res){
     if (req.param('user') != undefined) {
+	console.log("Make it Here??? 6.0");
         AM.updateAccount({
             user            : req.param('user'),
             name            : req.param('name'),
@@ -172,10 +173,20 @@ app.post('/home', function(req, res){
                 res.send('ok', 200);
             }
         });
-    }       else if (req.param('logout') == 'true'){
-        res.clearCookie('user');
-        res.clearCookie('pass');
+    } else if (req.param('logout') == 'true'){
+        console.log("Make it Here??? 2.0");
+	res.clearCookie('user',{path: '/' });
+	//res.cookie('user', '', {expires: new Date(1), path: '/' });
+	//delete req.session.user;
+	console.log(req.session.user);
+	console.log("Make it Here??? 3.0");
+        res.clearCookie('pass',{path: '/' });
+	//res.cookie('pass', '', {expires: new Date(1), path: '/' });
+	//delete req.session.pass;
+	console.log(req.session.pass);
+	console.log("Make it Here??? 4.0");
         req.session.destroy(function(e){ res.send('ok', 200); });
+	console.log("Make it Here??? 5.0");
     }
 });
 // creating new accounts //
