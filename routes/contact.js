@@ -28,10 +28,16 @@ function validate(message) {
         errors.push('Please enter a valid subject');
     }
     if(v.isLength(message.message,1,1000) == false){
-        errors.push('Please enter a valid message. Either you didn\'t write one or you wrote a novel. Please use less than 1000 characters.');
+        errors.push('Please enter a valid message. Either you didn\'t write a message or your message was the size of a novel. Please use less than 1000 characters.');
+    }
+    
+    // These are homebrewed validators based on bad messages
+    if(message.name == '2rand[0,1,1]'){
+        errors.push('NO BOTS PLEASE!');
     }
 
-  return errors;
+
+    return errors;
 }
 
 function sendEmail(message, fn) {

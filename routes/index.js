@@ -17,9 +17,17 @@ exports.index = function(postSchema) {
 	    for (var i=0; i< docs.length; i++){
 		docs[i].Post = docs[i].Post.substring(0,499);
 	    }
-	    res.render('index', {
-		"docs" : docs
-	    });
+	    if(req.session.user!=null){
+		res.render('index', {
+		    "docs" : docs,
+		    loggedin: 'true',
+		    udata: req.session.user
+		});
+	    } else {
+		res.render('index', {
+		    "docs" : docs,
+		});
+	    }
 	});
     };
 };

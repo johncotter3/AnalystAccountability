@@ -42,7 +42,8 @@ exports.avg = function(Analyst, firmSchema){
                 if(req.session.user!=null){
 		    res.render('analysts', {
 			"forecast" : docs,
-			loggedin: 'true'
+			loggedin: 'true',
+			udata: req.session.user
                     });
 		} else {
 		    res.render('analysts', {

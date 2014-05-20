@@ -48,8 +48,8 @@ html(lang='en')
           a.brand(href='/') Analyst Accountability
           .nav-collapse.collapse
             ul.nav
-              li(id='home_li')
-                a(href='/') Home
+              //-li(id='home_li')
+              //-  a(href='/') Home
               li(id='analysts_li')
                 a(href='/analysts') Analysts
               li(id='firms_li')
@@ -60,14 +60,16 @@ html(lang='en')
                 a(href='/contact') Contact
             ul.nav.pull-right
               li(id='login_li')
-                a(href='/login' id='login_a') Login
+                a(href='/login' id='login_a') Login/Signup
+              li(id='name_li')
+                a(id='name_a')
             form.navbar-search.pull-right.form-search(method='get' action='/search')
               .input-append
                 input.span2.search-query(type='text' name='q')
                 button.btn(type='submit')
                   i.icon-search
     script.
-      if('#{loggedin}'=='true'){var str = document.getElementById("login_a").innerHTML; var res = str.replace('Login','Logout'); document.getElementById("login_a").innerHTML = res; document.getElementById("login_a").removeAttribute("href");}
+      if('#{loggedin}'=='true'){var str = document.getElementById("login_a").innerHTML; var res = str.replace('Login/Signup','Logout'); document.getElementById("login_a").innerHTML = res; document.getElementById("login_a").removeAttribute("href"); document.getElementById("name_a").innerHTML = "Hi, "+"you"; document.getElementById("name_a").href = '/home'}
         
   block content
 
