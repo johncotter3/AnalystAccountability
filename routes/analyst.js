@@ -39,9 +39,16 @@ exports.avg = function(Analyst, firmSchema){
             model.find().exec(function(err, docs) {
                 if (err) return console.error(err);
                 console.log(docs);
-                res.render('analysts', {
-                    "forecast" : docs
-                });
+                if(req.session.user!=null){
+		    res.render('analysts', {
+			"forecast" : docs,
+			loggedin: 'true'
+                    });
+		} else {
+		    res.render('analysts', {
+                        "forecast" : docs,
+                    });
+		}
             });
         });
     };
@@ -50,7 +57,7 @@ exports.avg = function(Analyst, firmSchema){
 
 exports.specific = function(Analyst, firmSchema){
     return function(req, res) {
-        if (req.session.user.member == 'premium') {
+        if (req.session.user!=null && req.session.user.member == 'premium') {
             var analystName = req.params.analystName;
 	    console.log(analystName);
 	    Analyst.find({"Analyst": analystName}, function (err, docs) {
@@ -59,10 +66,18 @@ exports.specific = function(Analyst, firmSchema){
 		}else{
                     console.log("Success.");
 		}
-		res.render('specificAnalysts', {
-                    "forecast" : docs,
-		    title: analystName
-		});
+		if(req.session.user!=null){
+		    res.render('specificAnalysts', {
+			"forecast" : docs,
+			title: analystName,
+			loggedin: 'true'
+		    });
+		} else {
+		    res.render('specificAnalysts', {
+                        "forecast" : docs,
+                        title: analystName
+                    });
+		}
             });
 	} else {
             res.redirect('/premium');
