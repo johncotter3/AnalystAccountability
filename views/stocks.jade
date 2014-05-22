@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  include node-login/modals/alert
+  include node-login/modals/confirm
 
   script.
     $('#stocks_li').addClass('active');
@@ -32,3 +34,4 @@ block content
                   p(align="center") #{Math.round(doc.value.avg * 10) / 10}%
                 td
                   p(align="center") #{doc.value.count}
+

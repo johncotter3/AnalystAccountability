@@ -39,9 +39,17 @@ exports.avg = function(Stock, firmSchema) {
 		if (err) return console.error(err);
 		console.log(docs);
 		console.log("WHOAAAAAAAAA");
-		res.render('stocks', {
-                    "forecast" : docs
-		});
+		if(req.session.user!=null){
+		    res.render('stocks', {
+			"forecast" : docs,
+			loggedin: 'true'
+			//udata: req.session.user
+		    });
+		} else {
+		    res.render('stocks', {
+			"forecast" : docs
+		    });
+		}
 	    });
         });
     };
@@ -98,14 +106,22 @@ exports.specific = function(Stock, firmSchema) {
 		    uvrun.runOnce();
 		
 		// console.log("crazy: " + quotesx[3].date);
-		res.render('specificStocks', {
-		    "forecast" : docs,
-		    csv: csv,
-		    //quotesx: quotesx,
-		    title: symbolName
-		
-		});
-	    
+		if(req.session.user!=null){
+		    res.render('specificStocks', {
+			"forecast" : docs,
+			csv: csv,
+			//quotesx: quotesx,
+			title: symbolName,
+			loggedin: 'true'
+			//udata: req.session.user
+		    });
+		} else {
+		    res.render('specificStocks', {
+			"forecast" : docs,
+			csv: csv,
+			title: symbolName
+		    });
+		}
             });
 	} else {
 	    res.redirect('/premium');

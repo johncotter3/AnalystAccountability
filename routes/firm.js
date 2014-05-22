@@ -40,9 +40,17 @@ exports.avg = function(Firm, firmSchema) {
 		if (err) return console.error(err);
 		console.log(docs);
 		console.log("WHOAAAAAAAAA");
-		res.render('firms', {
-                    "forecast" : docs
-		});
+		if(req.session.user!=null){
+		    res.render('firms', {
+			"forecast" : docs,
+			loggedin: 'true'
+			//udata: req.session.user
+		    });
+		} else {
+		    res.render('firms', {
+			"forecast" : docs
+		    });
+		}
 	    });
         });
     };
@@ -50,7 +58,7 @@ exports.avg = function(Firm, firmSchema) {
 
 exports.specific = function(Firm, firmSchema) {
     return function(req, res) {
-	if (req.session.user.member == 'premium') {
+	if (req.session.user!=null && req.session.user.member == 'premium') {
             var firmName = req.params.firmName;
             var o = {};
             o.map = function() {
@@ -87,10 +95,19 @@ exports.specific = function(Firm, firmSchema) {
 		model.find().exec(function(err, docs) {
 		    if (err) return console.error(err);
 		    console.log(docs);
-		    res.render('specificFirms', {
-			"forecast" : docs,
-			title: firmName
-		    });    
+		    if(req.session.user!=null){
+			res.render('specificFirms', {
+			    "forecast" : docs,
+			    title: firmName,
+			    loggedin: 'true'
+			    //udata: req.session.user
+			});    
+		    } else {
+			res.render('specificFirms', {
+			    "forecast" : docs,
+			    title: firmName
+			});
+		    }
 		});
             });
 	} else {

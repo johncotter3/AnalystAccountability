@@ -76,7 +76,13 @@ function sendEmail(message, fn) {
 
 exports.formGet = function() {
     return function(req, res) {
-	res.render('contact');
+	if(req.session.user!=null){
+	    res.render('contact',{
+		loggedin: 'true'
+	    });
+	} else {
+	    res.render('contact');
+	}
     }
 };
 
@@ -88,7 +94,16 @@ exports.formPost = function() {
 	;
 	console.log('Message: '+message);
 	function render() {
-	    res.render('contact', locals);
+	    if(req.session.user!=null){
+		var jadeVars = {};
+		var locals2 = {loggedin: 'true'};
+		for (var attrname in locals) { jadeVars[attrname] = locals[attrname]; }
+		for (var attrname in locals2) { jadeVars[attrname] = locals2[attrname]; }
+		console.log(jadeVars);
+		res.render('contact',jadeVars);
+	    } else {
+		res.render('contact',locals);
+	    }
 	}
 	
 	if (errors.length === 0) {

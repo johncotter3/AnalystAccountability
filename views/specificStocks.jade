@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  include node-login/modals/alert
+  include node-login/modals/confirm
 
   script.
     $('#stocks_li'.addClass('active');
@@ -41,3 +43,4 @@ block content
                   p #{doc.Price_int}
                 td
                   p #{doc.Percent_Diff}
+

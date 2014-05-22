@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  include node-login/modals/alert
+  include node-login/modals/confirm
   
   script.
     $('#analysts_li').addClass('active');
@@ -8,19 +10,16 @@ block content
     .row-fluid.heading
       .span12
         h1 Analyst Accuracy
-        p &nbsp;
+        br
         table.table-striped(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0")
           thead
             tr
-              th(height="15")
-                p
-                  b Analyst
-              th(height="15")
-                p
-                  b Percent Error
-              th(height="15")
-                p
-                  b Number Ratings
+              th
+                h3 Analyst
+              th
+                h3 Percent Error
+              th
+                h3 Number Ratings
           tbody        
             each doc, i in forecast
               tr
@@ -31,14 +30,3 @@ block content
                   p #{doc.value.avg}
                 td
                   p #{doc.value.count}
-
-block scripts
-  //- node-login stuff
-  script(src='node-login/vendor/jquery.min.js')
-  script(src='node-login/vendor/jquery.form.js')
-  script(src='node-login/vendor/bootstrap-modal.js')
-  script(src='node-login/vendor/bootstrap-transition.js')
-  script(src='node-login/js/views/home.js')
-  script(src='node-login/js/controllers/homeController.js')
-  script(src='node-login/js/form-validators/accountValidator.js')
-

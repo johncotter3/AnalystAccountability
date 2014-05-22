@@ -20,8 +20,8 @@ exports.index = function(postSchema) {
 	    if(req.session.user!=null){
 		res.render('index', {
 		    "docs" : docs,
-		    loggedin: 'true',
-		    udata: req.session.user
+		    loggedin: 'true'
+		    //udata: req.session.user
 		});
 	    } else {
 		res.render('index', {
@@ -34,6 +34,13 @@ exports.index = function(postSchema) {
 
 exports.dne = function(){
     return function(req, res){
-	res.render('dne');
+	if(req.session.user!=null){
+	    res.render('dne', {
+		loggedin: 'true'
+		//udata: req.session.user
+   	    });
+	} else {
+	    res.render('dne');
+	}
     };
 };

@@ -13,7 +13,7 @@ html(lang='en')
     link(href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-    
+      
     //- Google Analytics Stuff  
     script (type='text/javascript').
       var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-43111947-1']); _gaq.push(['_trackPageview']); function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); }();
@@ -34,9 +34,17 @@ html(lang='en')
     script(type="text/javascript" src="http://www.amcharts.com/lib/3/themes/dark.js")
     script(type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js")
     script(type="text/javascript" src="/javascripts/amcharts_render.js")
+    
+    //- node-login stuff
+    script(src='node-login/vendor/jquery.min.js')
+    script(src='node-login/vendor/jquery.form.js')
+    script(src='node-login/vendor/bootstrap-modal.js')
+    script(src='node-login/vendor/bootstrap-transition.js')
+    script(src='node-login/js/views/home.js')
+    script(src='node-login/js/controllers/homeController.js')
+    script(src='node-login/js/form-validators/accountValidator.js')
+    block extraHeader
 
-    block scripts
-    block extraHeader 
   body
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
@@ -57,10 +65,10 @@ html(lang='en')
               li(id='stocks_li')
                 a(href='/stocks') Stocks
               li(id='contact_li')
-                a(href='/contact') Contact
+                a(href='/contact' id='login_a') Contact
             ul.nav.pull-right
               li(id='login_li')
-                a(href='/login' id='login_a') Login/Signup
+                a(href='/login' ) Login/Signup
               li(id='name_li')
                 a(id='name_a')
             form.navbar-search.pull-right.form-search(method='get' action='/search')

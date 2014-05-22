@@ -1,14 +1,17 @@
 extends layout
 
 block content
+  include node-login/modals/alert
+  include node-login/modals/confirm
 
   script.
     $('#analysts_li'.addClass('active');
   .container
     .row-fluid.heading
       .span12
-        h1(style='padding-bottom: 10px;') #{title} Accuracy
-        table(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0" class="table-striped")
+        h1 #{title} Accuracy
+        br
+        table.table-striped(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0")
           thead
             tr
               th
