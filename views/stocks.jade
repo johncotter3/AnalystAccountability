@@ -5,12 +5,14 @@ block content
   include node-login/modals/confirm
 
   script.
-    $('#stocks_li').addClass('active');
+    $('#stocks_li').addClass('active'); 
+  script.
+    console.log('#############  '+'#{udata.name}');
   .container
     .row-fluid.heading
       .span12
-        h1(style='padding-bottom: 10px') Most Accurate Stocks
-        p &nbsp;
+        h1(style='padding-bottom: 10px;' align="center") Most Accurate Stocks
+        br
         table.table-striped(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0")
           thead
             tr
@@ -35,3 +37,12 @@ block content
                 td
                   p(align="center") #{doc.value.count}
 
+block scripts
+  //- node-login stuff
+  //- script(src='node-login/vendor/jquery.min.js')
+  script(src='node-login/vendor/jquery.form.js')
+  script(src='node-login/vendor/bootstrap-modal.js')
+  script(src='node-login/vendor/bootstrap-transition.js')
+  script(src='node-login/js/views/home.js')
+  script(src='node-login/js/controllers/homeController.js')
+  script(src='node-login/js/form-validators/accountValidator.js')

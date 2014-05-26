@@ -42,8 +42,8 @@ exports.avg = function(Stock, firmSchema) {
 		if(req.session.user!=null){
 		    res.render('stocks', {
 			"forecast" : docs,
-			loggedin: 'true'
-			//udata: req.session.user
+			loggedin: 'true',
+			udata: req.session.user
 		    });
 		} else {
 		    res.render('stocks', {
@@ -57,7 +57,7 @@ exports.avg = function(Stock, firmSchema) {
 
 exports.specific = function(Stock, firmSchema) {
     return function(req, res) {
-	if (req.session.user.member == 'premium') {
+	if (req.session.user!=null && req.session.user.member == 'premium') {
             var symbolName = req.params.symbolName;
 	    
 	    Stock.find({"Symbol": symbolName}, function (err, docs) {
@@ -112,8 +112,8 @@ exports.specific = function(Stock, firmSchema) {
 			csv: csv,
 			//quotesx: quotesx,
 			title: symbolName,
-			loggedin: 'true'
-			//udata: req.session.user
+			loggedin: 'true',
+			udata: req.session.user
 		    });
 		} else {
 		    res.render('specificStocks', {

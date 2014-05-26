@@ -31,3 +31,13 @@ block content
           .controls
             textarea#message_message.input-xxlarge(placeholder='Enter message', rows='6', name='message[message]')=message.message
         button.btn(type='submit') Send Message
+
+block scripts
+  //- node-login stuff
+  script(src='node-login/vendor/jquery.min.js')
+  script(src='node-login/vendor/jquery.form.js')
+  script(src='node-login/vendor/bootstrap-modal.js')
+  script(src='node-login/vendor/bootstrap-transition.js')
+  script(src='node-login/js/views/home.js')
+  script(src='node-login/js/controllers/homeController.js')
+  script(src='node-login/js/form-validators/accountValidator.js')

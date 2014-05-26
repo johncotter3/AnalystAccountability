@@ -6,24 +6,20 @@ block content
 
   script.
     $('#firms_li').addClass('active');
-
   .container
     .row-fluid.heading
       .span12
         h1(style='padding-bottom: 10px') Firm Accuracy
-        p &nbsp;
-        table.table-striped(id="firmTable" align="center" width="100%" cellpadding="0" cellspacing="0" border="0") 
-          thead                  
+        br
+        table.table-striped(id='firmTable' align='center' width='100%' cellpadding='0' cellspacing='0' border='0') 
+          thead
             tr
               th 
-                p
-                  h3 Firm
+                h3 Firm
               th 
-                p
-                  h4 Average Error
+                h3 Average Error
               th 
-                p
-                  h5 # of Ratings
+                h3 Number of Ratings
           tbody
             each doc, i in forecast
               tr
@@ -31,7 +27,15 @@ block content
                   p
                     a(href='/firms/'+doc._id) !{doc._id}
                 td
-                  p(align="center") #{Math.round(doc.value.avg * 10) / 10}%
+                  p #{Math.round(doc.value.avg * 10) / 10}%
                 td
-                  p(align="center") #{doc.value.count}
+                  p #{doc.value.count}
 
+block scripts
+  //- node-login stuff
+  script(src='node-login/vendor/jquery.form.js')
+  script(src='node-login/vendor/bootstrap-modal.js')
+  script(src='node-login/vendor/bootstrap-transition.js')
+  script(src='node-login/js/views/home.js')
+  script(src='node-login/js/controllers/homeController.js')
+  script(src='node-login/js/form-validators/accountValidator.js')

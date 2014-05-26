@@ -144,8 +144,8 @@ app.get('/home', function(req, res) {
 	res.render('node-login/home', {
             title : 'Control Panel',
             countries : CT,
-            loggedin : 'true'
-	    //udata : req.session.user
+            loggedin : 'true',
+	    udata : req.session.user
         });
     } else{
 	res.redirect('/');
@@ -280,14 +280,14 @@ app.post('/delete', function(req, res){
   AM.delAllRecords(function(){
   res.redirect('/print');
   });
-  });*/
+  });
 app.get('*', function(req, res) { 
     if(req.session.user!=null){
 	res.render('node-login/404', { title: 'Page Not Found', loggedin : 'true'}); 
     } else {
 	res.render('node-login/404', { title: 'Page Not Found'});
     }
-});
+});*/
 
 
 // Create Web App

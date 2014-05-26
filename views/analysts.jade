@@ -30,3 +30,13 @@ block content
                   p #{doc.value.avg}
                 td
                   p #{doc.value.count}
+
+block scripts
+  //- node-login stuff
+  //- script(src='node-login/vendor/jquery.min.js')
+  script(src='node-login/vendor/jquery.form.js')
+  script(src='node-login/vendor/bootstrap-modal.js')
+  script(src='node-login/vendor/bootstrap-transition.js')
+  script(src='node-login/js/views/home.js')
+  script(src='node-login/js/controllers/homeController.js')
+  script(src='node-login/js/form-validators/accountValidator.js')

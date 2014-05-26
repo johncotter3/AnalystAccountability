@@ -13,14 +13,14 @@ html(lang='en')
     link(href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic', rel='stylesheet', type='text/css')
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-      
-    //- Google Analytics Stuff  
-    script (type='text/javascript').
-      var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-43111947-1']); _gaq.push(['_trackPageview']); function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); }();
     
-    script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.js")
-    script(type="text/javascript" charset="utf-8" language="javascript" src="/library/DataTables-1.9.4/media/js/jquery.dataTables.js")
-    script(type="text/javascript" charset="utf-8" language="javascript" src="/javascripts/DT_bootstrap.js")
+    //- Google Analytics Stuff  
+    script.
+      var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-43111947-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+    //- DataTables Stuff
+    script(type='text/javascript' charset='utf-8' language='javascript' src='/library/DataTables-1.9.4/media/js/jquery.js')
+    script(type='text/javascript' charset='utf-8' language='javascript' src='/library/DataTables-1.9.4/media/js/jquery.dataTables.js')
+    script(type='text/javascript' charset='utf-8' language='javascript' src='/javascripts/DT_bootstrap.js')
     
     //- amcharts stuff
     script.
@@ -29,20 +29,13 @@ html(lang='en')
       var title = !{JSON.stringify(title)};
     script.
       var events = !{JSON.stringify(JSON.stringify(forecast))};
-    script(type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js")
-    script(type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js")
-    script(type="text/javascript" src="http://www.amcharts.com/lib/3/themes/dark.js")
-    script(type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js")
-    script(type="text/javascript" src="/javascripts/amcharts_render.js")
-    
-    //- node-login stuff
-    script(src='node-login/vendor/jquery.min.js')
-    script(src='node-login/vendor/jquery.form.js')
-    script(src='node-login/vendor/bootstrap-modal.js')
-    script(src='node-login/vendor/bootstrap-transition.js')
-    script(src='node-login/js/views/home.js')
-    script(src='node-login/js/controllers/homeController.js')
-    script(src='node-login/js/form-validators/accountValidator.js')
+    script(type='text/javascript' src='http://www.amcharts.com/lib/3/amcharts.js')
+    script(type='text/javascript' src='http://www.amcharts.com/lib/3/serial.js')
+    script(type='text/javascript' src='http://www.amcharts.com/lib/3/themes/dark.js')
+    script(type='text/javascript' src='http://www.amcharts.com/lib/3/amstock.js')
+    script(type='text/javascript' src='/javascripts/amcharts_render.js')
+ 
+    block scripts
     block extraHeader
 
   body
@@ -65,10 +58,10 @@ html(lang='en')
               li(id='stocks_li')
                 a(href='/stocks') Stocks
               li(id='contact_li')
-                a(href='/contact' id='login_a') Contact
+                a(href='/contact') Contact
             ul.nav.pull-right
               li(id='login_li')
-                a(href='/login' ) Login/Signup
+                a(href='/login' id='login_a') Login/Signup
               li(id='name_li')
                 a(id='name_a')
             form.navbar-search.pull-right.form-search(method='get' action='/search')
@@ -77,9 +70,11 @@ html(lang='en')
                 button.btn(type='submit')
                   i.icon-search
     script.
-      if('#{loggedin}'=='true'){var str = document.getElementById("login_a").innerHTML; var res = str.replace('Login/Signup','Logout'); document.getElementById("login_a").innerHTML = res; document.getElementById("login_a").removeAttribute("href"); document.getElementById("name_a").innerHTML = "Hi, "+"you"; document.getElementById("name_a").href = '/home'}
-        
+      if('#{loggedin}'=='true'){var str = document.getElementById('login_a').innerHTML; var res = str.replace('Login/Signup','Logout'); document.getElementById('login_a').innerHTML = res; document.getElementById('login_a').removeAttribute('href'); document.getElementById('name_a').innerHTML = 'Hi, you'; document.getElementById('name_a').href = '/home'; }        
+    
   block content
 
     script.
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0]; a.async=1; a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-43111947-1', 'AnalystAccountability.com'); ga('send', 'pageview');
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0]; a.async=1; a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); 
+      ga('create', 'UA-43111947-1', 'AnalystAccountability.com'); 
+      ga('send', 'pageview');
