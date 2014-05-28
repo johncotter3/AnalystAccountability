@@ -37,7 +37,7 @@ exports.avg = function(Stock, firmSchema) {
             }
 	    model.find().exec(function(err, docs) {
 		if (err) return console.error(err);
-		console.log(docs);
+		//console.log(docs);
 		console.log("WHOAAAAAAAAA");
 		if(req.session.user!=null){
 		    res.render('stocks', {
