@@ -43,7 +43,7 @@ exports.avg = function(Stock, firmSchema) {
 		    res.render('stocks', {
 			"forecast" : docs,
 			loggedin: 'true',
-			udata: req.session.user
+			uname: req.session.user.name
 		    });
 		} else {
 		    res.render('stocks', {
@@ -113,7 +113,7 @@ exports.specific = function(Stock, firmSchema) {
 			//quotesx: quotesx,
 			title: symbolName,
 			loggedin: 'true',
-			udata: req.session.user
+			uname: req.session.user.name
 		    });
 		} else {
 		    res.render('specificStocks', {

@@ -70,7 +70,7 @@ html(lang='en')
                 button.btn(type='submit')
                   i.icon-search
     script.
-      if('#{loggedin}'=='true'){var str = document.getElementById('login_a').innerHTML; var res = str.replace('Login/Signup','Logout'); document.getElementById('login_a').innerHTML = res; document.getElementById('login_a').removeAttribute('href'); document.getElementById('name_a').innerHTML = 'Hi, you'; document.getElementById('name_a').href = '/home'; }        
+      if('#{loggedin}'=='true'){var str = document.getElementById('login_a').innerHTML; var res = str.replace('Login/Signup','Logout'); document.getElementById('login_a').innerHTML = res; document.getElementById('login_a').removeAttribute('href'); document.getElementById('name_a').innerHTML = 'Hi, '+'#{uname}'; document.getElementById('name_a').href = '/home'; }        
     
   block content
 

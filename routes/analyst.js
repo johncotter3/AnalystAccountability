@@ -42,8 +42,8 @@ exports.avg = function(Analyst, firmSchema){
                 if(req.session.user!=null){
 		    res.render('analysts', {
 			"forecast" : docs,
-			loggedin: 'true'
-			//udata: req.session.user
+			loggedin: 'true',
+			uname: req.session.user.name
                     });
 		} else {
 		    res.render('analysts', {
@@ -71,8 +71,8 @@ exports.specific = function(Analyst, firmSchema){
 		    res.render('specificAnalysts', {
 			"forecast" : docs,
 			title: analystName,
-			loggedin: 'true'
-			//udata: req.session.user
+			loggedin: 'true',
+			uname: req.session.user.name
 		    });
 		} else {
 		    res.render('specificAnalysts', {

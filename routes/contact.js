@@ -78,7 +78,8 @@ exports.formGet = function() {
     return function(req, res) {
 	if(req.session.user!=null){
 	    res.render('contact',{
-		loggedin: 'true'
+		loggedin: 'true',
+		uname: req.session.user.name
 	    });
 	} else {
 	    res.render('contact');
@@ -96,7 +97,10 @@ exports.formPost = function() {
 	function render() {
 	    if(req.session.user!=null){
 		var jadeVars = {};
-		var locals2 = {loggedin: 'true'};
+		var locals2 = {
+		    loggedin: 'true', 
+		    uname: req.session.user.name
+		};
 		for (var attrname in locals) { jadeVars[attrname] = locals[attrname]; }
 		for (var attrname in locals2) { jadeVars[attrname] = locals2[attrname]; }
 		console.log(jadeVars);

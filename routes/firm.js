@@ -43,8 +43,8 @@ exports.avg = function(Firm, firmSchema) {
 		if(req.session.user!=null){
 		    res.render('firms', {
 			"forecast" : docs,
-			loggedin: 'true'
-			//udata: req.session.user
+			loggedin: 'true',
+			uname: req.session.user.name
 		    });
 		} else {
 		    res.render('firms', {
@@ -99,8 +99,8 @@ exports.specific = function(Firm, firmSchema) {
 			res.render('specificFirms', {
 			    "forecast" : docs,
 			    title: firmName,
-			    loggedin: 'true'
-			    //udata: req.session.user
+			    loggedin: 'true',
+			    uname: req.session.user.name
 			});    
 		    } else {
 			res.render('specificFirms', {

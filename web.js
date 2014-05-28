@@ -109,7 +109,7 @@ app.post('/contact', contact.formPost());
 app.get('/login', function(req, res){
     // check if the user's credentials are saved in a cookie //
     if (req.cookies.user == undefined || req.cookies.pass == undefined){
-        res.render('node-login/login', { title: 'Hello - Please Login To Your Account' });
+        res.render('node-login/login', { title: 'Hello - Please Login To Your Account', udata: '' });
     } else{
         // attempt automatic login //
         AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
@@ -139,13 +139,12 @@ app.post('/login', function(req, res){
 // logged-in user homepage //
 app.get('/home', function(req, res) {
     if (req.session.user != null){
-        console.log('###############');
-        console.log(req.session.user.member);
 	res.render('node-login/home', {
             title : 'Control Panel',
             countries : CT,
             loggedin : 'true',
-	    udata : req.session.user
+	    udata : req.session.user,
+	    uname: req.session.user.name
         });
     } else{
 	res.redirect('/');
