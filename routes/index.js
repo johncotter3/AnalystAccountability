@@ -20,8 +20,8 @@ exports.index = function(postSchema) {
 	    if(req.session.user!=null){
 		res.render('index', {
 		    "docs" : docs,
-		    loggedin: 'true'
-		    //udata: req.session.user
+		    loggedin: 'true',
+		    uname: req.session.user.name
 		});
 	    } else {
 		res.render('index', {
