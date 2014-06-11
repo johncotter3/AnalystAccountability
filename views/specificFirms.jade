@@ -9,31 +9,37 @@ block content
   .container
     .row-fluid.heading
       .span12
-        h1(style='padding-bottom: 10px;') !{title} Accuracy
+        h1(style='padding-bottom: 10px') !{title} Accuracy
         br
         table.table-striped(id='firmTable' align='center' width='100%' cellpadding='0' cellspacing='0' border='0')
           thead
             tr
               th
-                h3 Analyst for !{title}
+                h3 Date
               th
-                h3 Average Error
+                h3 Symbol
               th
-                h3 Number of Ratings
-          tbody      
+                h3 Rating
+              th
+                h3 Price Target
+              th
+                h3 Percent Error
+          tbody
             each doc, i in forecast
               tr
                 td
-                  p 
-                    a(href='/analysts/'+doc._id) !{doc._id}
+                  p #{doc.Date.getMonth()+1}/#{doc.Date.getDate()}/#{doc.Date.getFullYear()}
                 td
-                  p #{Math.round(doc.value.avg * 10) / 10}%
+                  p #{doc.Symbol}
                 td
-                  p #{doc.value.count}
+                  p !{doc.Rating}
+                td
+                  p #{doc.Price_int}
+                td
+                  p #{doc.Percent_Diff}
 
 block scripts
   //- node-login stuff
-  script(src='../node-login/vendor/jquery.min.js')
   script(src='../node-login/vendor/jquery.form.js')
   script(src='../node-login/vendor/bootstrap-modal.js')
   script(src='../node-login/vendor/bootstrap-transition.js')
